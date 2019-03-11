@@ -29,11 +29,21 @@ const initApp = (app, params, cb) => {
 
 const initEngine = io => {
   io.on('connection', function(socket){
-    loginfo("Socket connected: " + socket.id)
+    if (users.indexOf(socket.id) != -1){
+      users.push(socket.id)
+    }
+    console.log("User connected: " + socket.id)
+   
     socket.on('action', (action) => {
       if(action.type === 'server/ping'){
         socket.emit('action', {type: 'pong'})
       }
+    })
+
+    socket.on('disconnect', (action) => {
+        users.splice(users.indexOf(socket.id), 1)
+        console.log("User disconnected: " + socket.id)
+
     })
   })
 }

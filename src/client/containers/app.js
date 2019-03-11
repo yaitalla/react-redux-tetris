@@ -1,18 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Pregame from './pregame';
 
 
 const App = ({message}) => {
   return (
-    <span>{message}</span>
+    <Pregame/>
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    message: state.message
-  }
-}
-export default connect(mapStateToProps, null)(App)
+export default App;
 
 
