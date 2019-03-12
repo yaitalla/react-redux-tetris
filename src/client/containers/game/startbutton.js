@@ -11,7 +11,7 @@ const launchGame = () => {
 const StartButton = ({myId, room}) => {
     return (
         <div style={flex}>
-            <button onClick={launchGame()} disabled={myId != room.owner} style={btn}>Start</button>
+            <button onClick={launchGame} disabled={myId != room.owner} style={btn}>Start</button>
         </div>
     )
 }

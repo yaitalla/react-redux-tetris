@@ -47,7 +47,10 @@ const source =  {
     gridWidth: 260,
     shapes: [
         'L', 'mirrorL', 'snakeL', 'snakeR', 'cross', 'stick', 'square'
-    ],
+	],
+	colors: [
+		'#fff6b6','#f4cfb2', '#ffcccc', '#d9c2f0', '#ffd232', '#b5e8f7','#d18162'
+	],
     block: 24
 }
 

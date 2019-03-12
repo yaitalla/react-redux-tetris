@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import {storeStateMiddleWare} from './middleware/storeStateMiddleWare'
 import App from './containers/app'
 import store from './store'
-import { NEW_CONNECT, ROOM_CHOSEN } from './constants';
+import { NEW_CONNECT, ROOM_CHOSEN, LAUNCH_GAME, USER_ID } from './constants';
 import socket from './socket';
 
 
@@ -17,11 +17,12 @@ ReactDom.render((
 socket.on(NEW_CONNECT, (data) => {
   store.dispatch(data)
 })
-
-socket.on('private', (data) => {
+socket.on(LAUNCH_GAME, (data) => {
   store.dispatch(data)
 })
-
+socket.on(USER_ID, (data) => {
+  store.dispatch(data)
+})
 socket.on(ROOM_CHOSEN, (data) => {
   store.dispatch(data)
 })

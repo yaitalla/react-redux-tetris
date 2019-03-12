@@ -1,8 +1,29 @@
-export const flex = {
+export const gameScreen = {
     display: "flex",
-    width: "100%",
+    textAlign: "center",
+    backgroundColor: "#f4f4f4",
+    width: '90%',
+    height: '80vh',
   }
-  
+
+export const boxe = {
+   border: '1px dashed #999',
+    height: '25px',
+    width: '25px',
+    textAlign: 'center'
+}
+
+export const rows = {
+  display: "flex",
+  flexDirection: "row",
+}
+
+export const field = {
+    display: "flex",
+    flexDirection: "column",
+    width: '260px', 
+}
+
   export const noBullet = {
     display: "flex",
     justifyContent: "center",

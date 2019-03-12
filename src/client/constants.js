@@ -5,3 +5,6 @@ export const NEW_CONNECT = 'NEW_CONNECT';
 export const ROOM_CHOSEN = 'ROOM_CHOSEN';
 export const YOUR_ID = 'YOUR_ID';
 export const LAUNCH = 'LAUNCH';
+export const PLAY = 'PLAY';
+export const USER_ID = 'USER_ID';
+export const LAUNCH_GAME = 'LAUNCH_GAME';

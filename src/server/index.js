@@ -36,8 +36,8 @@ const initEngine = io => {
     if (userlist.indexOf(socket.id) == -1){
       userlist.push(socket.id)
     }
-    console.log("User connected: " + socket.id)
-    io.to(socket.id).emit('private', {
+    // console.log("User connected: " + socket.id)
+    io.to(socket.id).emit('USER_ID', {
       type: 'YOUR_ID',
       id: socket.id
     });
@@ -56,8 +56,7 @@ const initEngine = io => {
       socket.emit('ROOM_SENT', roomlist)
     });
     socket.on('LAUNCH', () => {
-      startGame()
-      // socket.emit('LAUNCH_GAME', startGame())
+      socket.emit('LAUNCH_GAME', startGame())
     })
     socket.on('ENTER_ROOM', (data) => { //enter room
       let ret;
@@ -66,7 +65,6 @@ const initEngine = io => {
           ret = roomlist[i]
         }
       }
-      console.log(ret)
       socket.emit('ROOM_CHOSEN', {
         type: 'ROOM_CHOICE',
         actualRoom: ret
