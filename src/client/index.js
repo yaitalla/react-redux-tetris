@@ -1,21 +1,12 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import createLogger from 'redux-logger'
-import thunk from 'redux-thunk'
-import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'                                                                                                                                                    
 import {storeStateMiddleWare} from './middleware/storeStateMiddleWare'
-import reducer from './reducers'
 import App from './containers/app'
-import {alert} from './actions/alert'
+import store from './store'
+import { NEW_CONNECT, ROOM_CHOSEN } from './constants';
+import socket from './socket';
 
-const initialState = {}
-
-const store = createStore(
-  reducer,
-  initialState,
-  applyMiddleware(thunk, createLogger())
-)
 
 ReactDom.render((
   <Provider store={store}>
@@ -23,4 +14,16 @@ ReactDom.render((
   </Provider>
 ), document.getElementById('tetris'))
 
-store.dispatch(alert('Soon, will be here a fantastic Tetris ...'))
+socket.on(NEW_CONNECT, (data) => {
+  store.dispatch(data)
+})
+
+socket.on('private', (data) => {
+  store.dispatch(data)
+})
+
+socket.on(ROOM_CHOSEN, (data) => {
+  store.dispatch(data)
+})
+
+// store.dispatch(alert('Soon, will be here a fantastic Tetris ...'))

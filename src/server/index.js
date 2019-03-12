@@ -1,5 +1,9 @@
 import fs  from 'fs'
 import debug from 'debug'
+import startGame from './startGame';
+
+let userlist = [];
+let roomlist = [];
 
 const logerror = debug('tetris:error')
   , loginfo = debug('tetris:info')
@@ -29,19 +33,49 @@ const initApp = (app, params, cb) => {
 
 const initEngine = io => {
   io.on('connection', function(socket){
-    if (users.indexOf(socket.id) != -1){
-      users.push(socket.id)
+    if (userlist.indexOf(socket.id) == -1){
+      userlist.push(socket.id)
     }
     console.log("User connected: " + socket.id)
+    io.to(socket.id).emit('private', {
+      type: 'YOUR_ID',
+      id: socket.id
+    });
+    
+    socket.emit('NEW_CONNECT', {
+      type: 'LOGIN_DATA',
+      room: roomlist,
+      users: userlist
+    })
    
-    socket.on('action', (action) => {
-      if(action.type === 'server/ping'){
-        socket.emit('action', {type: 'pong'})
+    socket.on('CREATE_ROOM', (room) => {
+      roomlist.push({
+        name: room,
+        owner: socket.id
+      })
+      socket.emit('ROOM_SENT', roomlist)
+    });
+    socket.on('LAUNCH', () => {
+      startGame()
+      // socket.emit('LAUNCH_GAME', startGame())
+    })
+    socket.on('ENTER_ROOM', (data) => { //enter room
+      let ret;
+      for (let i in roomlist) {
+        if (roomlist[i].name == data) {
+          ret = roomlist[i]
+        }
       }
+      console.log(ret)
+      socket.emit('ROOM_CHOSEN', {
+        type: 'ROOM_CHOICE',
+        actualRoom: ret
+      })
+      socket.join(data)
     })
 
     socket.on('disconnect', (action) => {
-        users.splice(users.indexOf(socket.id), 1)
+        userlist.splice(userlist.indexOf(socket.id), 1)
         console.log("User disconnected: " + socket.id)
 
     })
