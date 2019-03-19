@@ -1,5 +1,6 @@
 import { ADD_ROOM } from '../actions/addRoom'
-import {LOGIN_DATA, ROOM_CHOICE, YOUR_ID, PLAY} from '../constants';
+import {LOGIN_DATA, ROOM_CHOICE, RESUME,
+    YOUR_ID, REFRESH, PAUSE, MOVE, PLAY} from '../constants';
 
 const initial_state = {
     shapeIndex: -1,
@@ -11,17 +12,40 @@ const initial_state = {
     actualRoom: {
         name: '',
         owner: ''
-    }
+    },
+    status: false,
+    nb: 0
 }
 
 const gameReducer = (state = initial_state , action) => {
   switch(action.type){
+    case RESUME:
+        return {
+            ...state,
+            status: true
+        }
+    case REFRESH:
+        return {
+            ...state,
+            nb: state.nb+1
+        }
+    case PAUSE:
+        return {
+            ...state,
+            status: action.status
+        }
+    case MOVE:
+        return {
+            ...state,
+            grid: action.newGrid
+        }
     case PLAY:
         return {
             ...state,
             shapes: action.arrayOfShapes,
             grid: action.field,
-            shapeIndex: 0
+            shapeIndex: 0,
+            status: action.status
         }
     case YOUR_ID:
         return {

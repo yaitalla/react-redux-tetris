@@ -1,17 +1,35 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { flex, btn} from './style';
+import {btn} from './style';
 import socket from '../../socket';
-import { LAUNCH } from '../../constants'
+import { LAUNCH, PAUSE, RESUME } from '../../constants'
 
 const launchGame = () => {
     socket.emit(LAUNCH)
 }
+const pauseGame = () => {
+    socket.emit(PAUSE)
+}
+const resumeGame = () => {
+    socket.emit(RESUME)
+}
 
-const StartButton = ({myId, room}) => {
+const PlayButton = ({myId, room, playing, shapeIndex}) => {
+    console.log(status)
     return (
-        <div style={flex}>
-            <button onClick={launchGame} disabled={myId != room.owner} style={btn}>Start</button>
+        <div>
+            {
+                shapeIndex < 0 ? <button onClick={launchGame}
+                                disabled={myId != room.owner}
+                                            style={btn}>Start</button>
+                : ( playing == true ? <button onClick={pauseGame}
+                                disabled={myId != room.owner}
+                                            style={btn}>Pause</button>
+                                :   <button onClick={resumeGame}
+                                disabled={myId != room.owner}
+                                            style={btn}>Play</button>
+                    )
+            }
         </div>
     )
 }
@@ -19,8 +37,10 @@ const StartButton = ({myId, room}) => {
 const mapStateToProps = (state) => {
     return {
         myId: state.yourId,
-        room: state.actualRoom
+        room: state.actualRoom,
+        playing: state.status,
+        shapeIndex: state.shapeIndex
     }
 }
 
-export default connect(mapStateToProps)(StartButton);
+export default connect(mapStateToProps)(PlayButton);

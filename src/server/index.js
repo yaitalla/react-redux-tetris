@@ -58,6 +58,18 @@ const initEngine = io => {
     socket.on('LAUNCH', () => {
       socket.emit('LAUNCH_GAME', startGame())
     })
+    socket.on('PAUSE', () => {
+      socket.emit('PAUSE_GAME', {
+        type: 'PAUSE',
+        status: false
+      })
+    })
+    socket.on('RESUME', () => {
+      socket.emit('RESUME', {
+        type: 'RESUME',
+        status: true
+      })
+    })
     socket.on('ENTER_ROOM', (data) => { //enter room
       let ret;
       for (let i in roomlist) {
@@ -73,9 +85,14 @@ const initEngine = io => {
     })
 
     socket.on('disconnect', (action) => {
-        userlist.splice(userlist.indexOf(socket.id), 1)
+        userlist.splice(userlist.indexOf(socket.id), 1)// remove user from list
+        const chekRooms = (room) => {         //check if the user
+          return room.owner === socket.id     //was a room admin
+        }
+       while (roomlist.find(chekRooms)) {     //remove his rooms
+         roomlist.splice(roomlist.indexOf(roomlist.find(chekRooms)), 1)
+       }
         console.log("User disconnected: " + socket.id)
-
     })
   })
 }

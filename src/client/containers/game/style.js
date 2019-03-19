@@ -1,10 +1,19 @@
 export const gameScreen = {
     display: "flex",
     textAlign: "center",
+    justifyContent: "center",
     backgroundColor: "#f4f4f4",
     width: '90%',
     height: '80vh',
   }
+
+export const screen = {
+  display: "flex",
+    textAlign: "center",
+    backgroundColor: "pink",
+    width: '90%',
+    
+}
 
 export const boxe = {
    border: '1px dashed #999',

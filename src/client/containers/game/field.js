@@ -1,10 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {rows, field, boxe} from './style';
+import DataBoard from './dataBoard'
 
-const DataBoard = ({nextShape}) => {
-
-}
 
 const setStyle = (box, curr, shapes) => {
     if (box > 0) {
@@ -43,4 +41,12 @@ const GameField = ({grid, current, shapes}) => {
     )
 }
 
-export default GameField;
+const mapStateToProps = (state) => {
+    return {
+        grid: state.grid,
+        current: state.shapeIndex,
+        shapes: state.shapes
+    }
+}
+
+export default connect(mapStateToProps)(GameField);
