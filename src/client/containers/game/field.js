@@ -8,8 +8,8 @@ const setStyle = (box, curr, shapes) => {
     if (box > 0) {
         return {
             border: '1px dashed #999',
-             height: '25px',
-             width: '25px',
+             height: '15px',
+             width: '15px',
              textAlign: 'center',
              backgroundColor: shapes[curr].color
          }

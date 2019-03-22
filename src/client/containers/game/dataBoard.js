@@ -34,12 +34,12 @@ const Row = ({stat, color}) => {
 }
   
 
-const shapeView = (data, colors) => {
+const shapeView = (data) => {
   return (
     <div>
       {
         data.shape.map((row, i) =>
-          <Row key={i} color={colors[data.id]} stat={row}/>
+          <Row key={i} color={data.color} stat={row}/>
         )
       }
     </div>
@@ -48,7 +48,12 @@ const shapeView = (data, colors) => {
 
 const DataBoard = ({next}) => {
     return (
-        <div style={field}>next</div>
+        <div style={field}>
+          <h2>Next shape</h2>
+        {
+          next.shape ? shapeView(next) : null
+        }
+        </div>
     )
 }
 

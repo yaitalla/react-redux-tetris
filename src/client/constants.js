@@ -13,3 +13,6 @@ export const PAUSE_GAME = 'PAUSE_GAME';
 export const REFRESH = 'REFRESH';
 export const MOVE = 'MOVE';
 export const RESUME = 'RESUME';
+export const RIGHT = 'RIGHT';
+export const LEFT = 'LEFT';
+export const DOWN = 'DOWN';

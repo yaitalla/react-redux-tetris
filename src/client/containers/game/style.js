@@ -16,21 +16,24 @@ export const screen = {
 }
 
 export const boxe = {
-   border: '1px dashed #999',
-    height: '25px',
-    width: '25px',
+  border: '1px dashed #999',
+    height: '15px',
+    width: '15px',
     textAlign: 'center'
 }
 
 export const rows = {
-  display: "flex",
-  flexDirection: "row",
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "row",
 }
 
 export const field = {
+    // border: '1px dashed #999',
     display: "flex",
     flexDirection: "column",
-    width: '260px', 
+    width: '260px',
+    justifyContent: "center"
 }
 
   export const noBullet = {

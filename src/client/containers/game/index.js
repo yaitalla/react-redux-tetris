@@ -12,19 +12,23 @@ const controller = (field) => {
     const listener = (e) => {
         switch(e.keyCode) {
             case 39: //right
-                store.dispatch(move('R', field))
+            store.dispatch(move('R', field))
                 break;
             case 40: //down
-                console.log('D')
+            store.dispatch(refresh())
+            console.log('D')
                 break;
             case 38: //up
-                console.log('UP')
+            console.log('UP')
+            store.dispatch(refresh())
                 break;
             case 37: //left
-                console.log('L')
+            console.log('L')
+            store.dispatch(refresh())
+
                 break;
             default:
-                store.dispatch(refresh())
+            store.dispatch(refresh())
                 break;
             }
         }
