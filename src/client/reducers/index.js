@@ -1,5 +1,5 @@
 import { ADD_ROOM } from '../actions/addRoom'
-import {LOGIN_DATA, ROOM_CHOICE, RESUME,
+import {LOGIN_DATA, LEFT, ROOM_CHOICE, RESUME, DOWN, ROTATE,
     YOUR_ID, REFRESH, PAUSE, RIGHT, PLAY} from '../constants';
 
 const initial_state = {
@@ -37,7 +37,26 @@ const gameReducer = (state = initial_state , action) => {
     case RIGHT:
         return {
             ...state,
-            grid: action.newGrid
+            grid: action.newGrid,
+            shapes: action.shape
+        }
+    case ROTATE:
+        return {
+            ...state,
+            grid: action.field,
+            shapes: action.shape
+        }
+    case DOWN:
+        return {
+            ...state,
+            grid: action.newGrid,
+            shapes: action.shape
+        }
+    case LEFT:
+        return {
+            ...state,
+            grid: action.newGrid,
+            shapes: action.shape
         }
     case PLAY:
         return {

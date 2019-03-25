@@ -4,14 +4,15 @@ import Pregame from './pregame';
 import Game from './game'
 
 const App = ({actualroom}) => {
-  return (
-    <div>
-    {
-        actualroom.name.length > 0 ? <Game/> : <Pregame /> 
-    }
-    </div>
+  // return (
+  //   <div>
+  //   {
+  //       actualroom.name.length > 0 ? <Game/> : <Pregame /> 
+  //   }
+  //   </div>
     
-  )
+  // )
+  return (<div><Game/></div>)
 }
 
 const mapStateToProps = (state) => {

@@ -1,4 +1,5 @@
 import {checkBelow} from './collisionDown';
+import { ROTATE , REFRESH} from '../constants';
 
 const newGrid = (field) =>{
     const grid = []
@@ -40,22 +41,19 @@ const rotater = (shape) => {
 }
 
 
-export const rotate = (field, shapes, index, nb) => {
+export const rotate = (field, shapes, i) => {
     if (!checkBelow(field)) {
-        return {
-            type: 'REFRESH',
-            field: field,
-            nbr: nb+1,
-        }
+        return { type: REFRESH }
     }
     let ret = newGrid(field);
     const rot = {
-        shape: rotater(shapes[index].shape),
-        id: shapes[index].id,
-        leftCorner: shapes[index].leftCorner
+        color: shapes[i].color,
+        shape: rotater(shapes[i].shape),
+        id: shapes[i].id,
+        leftCorner: shapes[i].leftCorner
     }
-    const x = shapes[index].leftCorner.x
-    const y = shapes[index].leftCorner.y
+    const x = shapes[i].leftCorner.x
+    const y = shapes[i].leftCorner.y
     for (let i=y; i<(y+4); i++) {
         for(let j=x; j<(x+4); j++) {
             if (rot.shape[i-y][j-x] == 2) {
@@ -63,9 +61,9 @@ export const rotate = (field, shapes, index, nb) => {
             }
         }
     }
-    shapes[index] = rot;
+    shapes[i] = rot;
     return {
-        type: 'ROTATE',
+        type: ROTATE,
         field: ret,
         shape: shapes,
     }

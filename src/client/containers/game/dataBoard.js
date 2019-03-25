@@ -1,5 +1,5 @@
 import React from 'react';
-import {board, rows, field} from './style';
+import {board, rows, datafield} from './style';
 import { connect } from 'react-redux';
 
 
@@ -48,7 +48,7 @@ const shapeView = (data) => {
 
 const DataBoard = ({next}) => {
     return (
-        <div style={field}>
+        <div style={datafield}>
           <h2>Next shape</h2>
         {
           next.shape ? shapeView(next) : null

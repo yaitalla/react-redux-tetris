@@ -16,7 +16,7 @@ export const screen = {
 }
 
 export const boxe = {
-  border: '1px dashed #999',
+    border: '1px dashed white',
     height: '15px',
     width: '15px',
     textAlign: 'center'
@@ -29,11 +29,17 @@ export const rows = {
 }
 
 export const field = {
-    // border: '1px dashed #999',
+  //    border: '1px dashed #999',
     display: "flex",
     flexDirection: "column",
     width: '260px',
     justifyContent: "center"
+}
+export const datafield = {
+ display: "flex",
+ flexDirection: "column",
+ width: '260px',
+ justifyContent: "center"
 }
 
   export const noBullet = {

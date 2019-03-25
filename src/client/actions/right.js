@@ -1,7 +1,7 @@
 import grid from './grid';
 import { RIGHT, REFRESH } from '../constants';
 
-export const right = (field) => {
+export const right = (field, shapes, i) => {
     let ret = grid();
         for (let i=0; i<20; i++){
             for(let j=0; j<10; j++){
@@ -14,8 +14,10 @@ export const right = (field) => {
                 } 
             }
         }
+    shapes[i].leftCorner.x++
     return {
         type: RIGHT,
-        newGrid: ret
+        newGrid: ret,
+        shape: shapes
     }
 }
