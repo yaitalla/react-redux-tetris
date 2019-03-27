@@ -1,6 +1,6 @@
 import { ADD_ROOM } from '../actions/addRoom'
 import {LOGIN_DATA, LEFT, ROOM_CHOICE, RESUME, DOWN, ROTATE,
-    YOUR_ID, REFRESH, PAUSE, RIGHT, PLAY} from '../constants';
+    YOUR_ID, REFRESH, PAUSE, RIGHT, PLAY, ADD_SHAPE} from '../constants';
 
 const initial_state = {
     shapeIndex: -1,
@@ -19,6 +19,12 @@ const initial_state = {
 
 const gameReducer = (state = initial_state , action) => {
   switch(action.type){
+    case ADD_SHAPE:
+        return {
+            ...state,
+            grid: action.field,
+            shapeIndex: action.i
+        }
     case RESUME:
         return {
             ...state,

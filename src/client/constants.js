@@ -17,3 +17,7 @@ export const RIGHT = 'RIGHT';
 export const LEFT = 'LEFT';
 export const DOWN = 'DOWN';
 export const ROTATE = 'ROTATE';
+export const ADD_SHAPE = 'ADD_SHAPE';
+export const SHAPE_REQ = 'SHAPE_REQ';
+export const SHAPE_SENT = 'SHAPE_SENT';
+export const GAME_OVER = 'GAME_OVER';
