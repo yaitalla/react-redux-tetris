@@ -10,6 +10,11 @@ import Screen from './screen'
 import { connect } from 'react-redux';
 
 
+const playSound = () => {
+    const audio = new Audio('whoosh.mp3')
+    audio.play()
+}
+
 const controller = (field, shapes, i, room) => {
     const listener = (e) => {
         switch(e.keyCode) {
@@ -30,15 +35,15 @@ const controller = (field, shapes, i, room) => {
             e.preventDefault();
                 break;
             default:
-            store.dispatch(refresh())
-            e.preventDefault();
+               playSound()
+                store.dispatch(refresh())
                 break;
             }
         }
     window.addEventListener('keydown', listener, { once: true});
 }
 
-const Game = ({shapeIndex, field, shapes, room}) => {
+const Game = ({shapeIndex, field, shapes, room, nbr}) => {
    if (shapeIndex >= 0) { controller(field, shapes, shapeIndex, room)}
     return (
         <div>
@@ -54,7 +59,8 @@ const mapStateToProps = (state) => {
         shapeIndex: state.shapeIndex,
         field: state.grid,
         shapes: state.shapes,
-        room: state.actualRoom
+        room: state.actualRoom,
+        nbr: state.nbr
     }
 }
 

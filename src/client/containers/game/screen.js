@@ -4,7 +4,7 @@ import { gameScreen } from './style';
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Screen = () => {
+const Screen = ({nbr}) => {
     return (
         <div style={gameScreen}>
             <GameField/>
@@ -13,4 +13,10 @@ const Screen = () => {
     )
 }
 
-export default connect()(Screen);
+const mapStateToProps = (state) => {
+    return  {
+        nbr: state.nbr
+    }
+}
+
+export default connect(mapStateToProps)(Screen);

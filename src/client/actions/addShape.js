@@ -1,5 +1,5 @@
 import socket from '../socket';
-import {grid} from './grid';
+import grid from './grid';
 import { ADD_SHAPE, GAME_OVER, SHAPE_REQ } from '../constants';
 
 const checkLine = (line) => {
@@ -30,12 +30,12 @@ const checkLine = (line) => {
 // }
 
 const removeLiner = (lines, field) => {
-    let grid = grid(), gap = lines.length;
+    let gride = grid(), gap = lines.length;
    // let min = Math.min(lines), max = Math.max(lines);
     if (gap == 1) {
         let i = lines[0]
         field.splice(i, 1)
-        field.splice(1, 0, grid[1])
+        field.splice(1, 0, gride[1])
         return field
     }
 }

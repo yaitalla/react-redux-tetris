@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import {storeStateMiddleWare} from './middleware/storeStateMiddleWare'
 import App from './containers/app'
 import store from './store'
-import { NEW_CONNECT, ROOM_CHOSEN, RESUME, PAUSE_GAME, LAUNCH_GAME, USER_ID } from './constants';
+import { NEW_CONNECT, ROOM_CHOSEN, RESUME, PAUSE_GAME, LAUNCH_GAME, USER_ID, SHAPE_REQ, SHAPE_SENT } from './constants';
 import socket from './socket';
 
 
@@ -30,6 +30,9 @@ socket.on(USER_ID, (data) => {
   store.dispatch(data)
 })
 socket.on(ROOM_CHOSEN, (data) => {
+  store.dispatch(data)
+})
+socket.on(SHAPE_SENT, (data) => {
   store.dispatch(data)
 })
 

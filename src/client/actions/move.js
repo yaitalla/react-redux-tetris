@@ -1,5 +1,4 @@
 import { right} from './right';
-import { rotate } from './rotate';
 import { left } from './left';
 import { down } from './down';
 import { refresh } from './refresh';
