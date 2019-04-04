@@ -1,6 +1,6 @@
 import { ALERT_POP } from '../actions/alert'
 import { LOGIN_DATA, ROTATE, RESUME, MOVING, REFRESH, LEFT, RIGHT,
-    USER_ID, ADD_ROOM, ROOM_CHOICE, LAUNCH, PAUSE_GAME, DOWN, ADD_SHAPE } from '../config/constants';
+    USER_ID, ADD_ROOM, ROOM_CHOICE, LAUNCH, PAUSE_GAME, DOWN, ADD_SHAPE, SHAPES_SENT } from '../config/constants';
 
 const initial_state = {
     grid: [],
@@ -13,6 +13,11 @@ const initial_state = {
 
 const gameReducer = (state = initial_state , action) => {
   switch(action.type){
+    case SHAPES_SENT:
+        return {
+            ...state,
+            shapes: action.shapes
+        }
     case ADD_SHAPE:
         return {
             ...state,
@@ -42,11 +47,6 @@ const gameReducer = (state = initial_state , action) => {
             ...state,
             grid: action.field,
             shapes: action.shapes
-        }
-    case MOVING:
-        return {
-            ...state,
-            moving: action.moving
         }
     case ROTATE:
         return {

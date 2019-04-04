@@ -15,7 +15,6 @@ const resumeGame = (room) => {
 }
 
 const PlayButton = ({myId, room, playing, shapeIndex}) => {
-    console.log(status)
     // return (
     //     <div>
     //         {

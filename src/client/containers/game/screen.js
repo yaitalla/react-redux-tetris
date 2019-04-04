@@ -4,7 +4,8 @@ import { gameScreen } from './style';
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Screen = ({nbr}) => {
+const Screen = ({nb}) => {
+    //shapeProvider(current, shapes, room)
     return (
         <div style={gameScreen}>
             <GameField/>
@@ -15,7 +16,7 @@ const Screen = ({nbr}) => {
 
 const mapStateToProps = (state) => {
     return  {
-        nbr: state.nbr
+        nb: state.nb
     }
 }
 

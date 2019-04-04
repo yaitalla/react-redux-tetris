@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {rows, field, boxe} from './style';
 import inputs from '../../config/misc/inputs'
+import socket from '../../config/misc/socketConnect';
+import {shapeProvider} from '../../config/misc/shapeProvider';
 
 const setStyle = (box, curr, shapes, color) => {
     if (box == 2) {
@@ -37,8 +39,9 @@ const Row = ({row, curr, shapes, color}) => {
     )
 } 
 
-const GameField = ({colors, moving, grid, current, shapes, nbr}) => {
-     if (moving != true) {inputs()}
+const GameField = ({colors, moving, grid, current, shapes, room, nbr}) => {
+    shapeProvider(current, shapes, room)
+    if (moving != true) {inputs()}
     return (
         <div style={field}>
             {
@@ -55,7 +58,8 @@ const mapStateToProps = (state) => {
         shapes: state.shapes,
         colors: state.colors,
         nbr: state.nb,
-        moving: state.moving
+        moving: state.moving,
+        room: state.actualRoom
     }
 }
 

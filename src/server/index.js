@@ -1,6 +1,7 @@
 import fs  from 'fs'
 import debug from 'debug'
 import startGame from './process/startGame'
+import randomShapes from './process/shaper';
 
 let userlist = [];
 let roomlist = [];
@@ -79,6 +80,10 @@ const initEngine = io => {
       io.in(room.name).emit('RESUME', {
         type: 'RESUME',
       })
+    })
+    socket.on('SHAPE_REQ', data => {
+      const newShapes = randomShapes(data.shapes)
+      io.in(data.room.name).emit('SHAPES_SENT' , newShapes)
     })
    // loginfo("Socket connected: " + socket.id)
     

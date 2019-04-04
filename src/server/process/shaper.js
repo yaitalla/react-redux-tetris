@@ -1,4 +1,5 @@
 import source from './data';
+import grider from './grid';
 
 const randomShape = () => {
     const shapes = source.shapes; //list of string

@@ -57,6 +57,6 @@ const moveDown = (field, id, shapes, index, room) => {
 
 export const down = (state) => {
     let field = state.grid, id = state.shapes[state.shapeIndex].id, shapes = state.shapes,
-                index = state.shapeIndex, room = state.actualroom;
+                index = state.shapeIndex, room = state.actualRoom;
     return moveDown(field, id, shapes, index, room)
 }

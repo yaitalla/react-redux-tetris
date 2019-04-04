@@ -1,4 +1,5 @@
 import socket from '../config/misc/socketConnect';
+import { GAME_OVER , ADD_SHAPE} from '../config/constants';
 
 const checkLine = (line) => {
     let x = 0;
@@ -23,6 +24,7 @@ const gridMaker = () => {
 }
 
 const removeLiner = (lines, field) => {
+    // console.log(field, lines)
     let grid = gridMaker(), gap = lines.length;
     // let min = Math.min(lines), max = Math.max(lines);
     if (gap == 1) {
@@ -47,17 +49,13 @@ const checkForLine = (field) => {
 }
 
 export const add = (field, shapes, index, room) => {
-    if (index+1 == shapes.length){
-            console.log('ici shape reqest', shapes.length)
-            socket.emit('SHAPE_REQUEST', {field, shapes, room})
-    }
     let ret = checkForLine(field);
     for (let i=1; i<5; i++) {
         for(let j=3; j<7; j++) {
             if (shapes[index+1].shape[i-1][j-3] == 2) {
                 if (ret[i][j+1] > 2) {
                     return {
-                        type: 'GAME_OVER',
+                        type: GAME_OVER,
                         field: ret,
                         gameOver: true
                     }
@@ -66,9 +64,8 @@ export const add = (field, shapes, index, room) => {
             }
         }
     }
-    console.log(ret)
     return {
-        type: 'ADD_SHAPE',
+        type: ADD_SHAPE,
         field: ret,
         shapes: shapes,
         i: index + 1,

@@ -22,10 +22,10 @@ const keyboard = {
       }
       const type = keyboard[e.keyCode];
       // if (type === keydownActive) {
-      //   console.log("icic")
-      //   return;
+      //     store.dispatch(alert('pop alert ...'))
+      //     return;
       // }
-      keydownActive = type;
+      // keydownActive = type;
       store.dispatch(move[type](store.getState()))
     };
 
