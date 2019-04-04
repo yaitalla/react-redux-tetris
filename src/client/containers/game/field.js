@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {rows, field, boxe} from './style';
-import DataBoard from './dataBoard'
-
+import inputs from '../../config/misc/inputs'
 
 const setStyle = (box, curr, shapes, color) => {
     if (box == 2) {
@@ -38,7 +37,8 @@ const Row = ({row, curr, shapes, color}) => {
     )
 } 
 
-const GameField = ({colors, grid, current, shapes, nbr}) => {
+const GameField = ({colors, moving, grid, current, shapes, nbr}) => {
+     if (moving != true) {inputs()}
     return (
         <div style={field}>
             {
@@ -54,7 +54,8 @@ const mapStateToProps = (state) => {
         current: state.shapeIndex,
         shapes: state.shapes,
         colors: state.colors,
-        nbr: state.nb
+        nbr: state.nb,
+        moving: state.moving
     }
 }
 

@@ -1,17 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {btn} from './style';
-import socket from '../../socket';
-import { LAUNCH, PAUSE, RESUME } from '../../constants'
+import socket from '../../config/misc/socketConnect';
+import { LAUNCH, PAUSE, RESUME } from '../../config/constants'
 
-const launchGame = () => {
-    socket.emit(LAUNCH)
+const launchGame = (room) => {
+     socket.emit(LAUNCH, room)
 }
-const pauseGame = () => {
-    socket.emit(PAUSE)
+const pauseGame = (room) => {
+    socket.emit(PAUSE, room)
 }
-const resumeGame = () => {
-    socket.emit(RESUME)
+const resumeGame = (room) => {
+   socket.emit(RESUME, room)
 }
 
 const PlayButton = ({myId, room, playing, shapeIndex}) => {
@@ -34,11 +34,11 @@ const PlayButton = ({myId, room, playing, shapeIndex}) => {
     // )
     return (
         <div>
-            <button onClick={launchGame} style={btn}>Start</button>
+            <button onClick={() => launchGame(room)} style={btn}>Start</button>
             {
-                ( playing == true ? <button onClick={pauseGame}
+                ( playing === true ? <button onClick={() => pauseGame(room)}
                                             style={btn}>Pause</button>
-                                :   <button onClick={resumeGame}
+                                :   <button onClick={() => resumeGame(room)}
                                             style={btn}>Play</button>
                     )
             }
@@ -50,8 +50,8 @@ const mapStateToProps = (state) => {
     return {
         myId: state.yourId,
         room: state.actualRoom,
-        playing: state.status,
-        shapeIndex: state.shapeIndex
+        playing: state.playing,
+        shapeIndex: state.shapeIndex,
     }
 }
 

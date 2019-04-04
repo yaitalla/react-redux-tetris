@@ -21,3 +21,6 @@ export const ADD_SHAPE = 'ADD_SHAPE';
 export const SHAPE_REQ = 'SHAPE_REQ';
 export const SHAPE_SENT = 'SHAPE_SENT';
 export const GAME_OVER = 'GAME_OVER';
+export const ROOM_SENT = 'ROOM_SENT';
+export const ADD_ROOM = 'ADD_ROOM';
+export const MOVING = 'MOVING';

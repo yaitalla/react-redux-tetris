@@ -1,21 +1,14 @@
-import { ADD_ROOM } from '../actions/addRoom'
-import {LOGIN_DATA, LEFT, ROOM_CHOICE, RESUME, DOWN, ROTATE,
-    YOUR_ID, REFRESH, PAUSE, RIGHT, PLAY, ADD_SHAPE} from '../constants';
+import { ALERT_POP } from '../actions/alert'
+import { LOGIN_DATA, ROTATE, RESUME, MOVING, REFRESH, LEFT, RIGHT,
+    USER_ID, ADD_ROOM, ROOM_CHOICE, LAUNCH, PAUSE_GAME, DOWN, ADD_SHAPE } from '../config/constants';
 
 const initial_state = {
-    shapeIndex: -1,
-    shapes: [],//tableau de piece
     grid: [],
-    yourId: '',
-    userslist: [],
-    roomlist: [],
-    actualRoom: {
-        name: '',
-        owner: ''
-    },
-    colors: ['#fff6b6','#f4cfb2', '#ffcccc', '#d9c2f0', '#ffd232', '#b5e8f7','#d18162'],
-    status: false,
-    nb: 0
+    shapes: [],
+    shapeIndex: -1,
+    nb: 0,
+    moving: false,
+    playing: false
 }
 
 const gameReducer = (state = initial_state , action) => {
@@ -24,28 +17,36 @@ const gameReducer = (state = initial_state , action) => {
         return {
             ...state,
             grid: action.field,
+            shapes: action.shapes,
             shapeIndex: action.i
-        }
-    case RESUME:
-        return {
-            ...state,
-            status: true
         }
     case REFRESH:
         return {
-            ...state,
-            nb: state.nb+1
-        }
-    case PAUSE:
+        ...state,
+        nb: action.nbr
+    }
+    case DOWN:
         return {
             ...state,
-            status: action.status
+            grid: action.field,
+            shapes: action.shapes
+        }
+    case LEFT:
+        return {
+            ...state,
+            grid: action.field,
+            shapes: action.shapes
         }
     case RIGHT:
         return {
             ...state,
-            grid: action.newGrid,
-            shapes: action.shape
+            grid: action.field,
+            shapes: action.shapes
+        }
+    case MOVING:
+        return {
+            ...state,
+            moving: action.moving
         }
     case ROTATE:
         return {
@@ -53,50 +54,59 @@ const gameReducer = (state = initial_state , action) => {
             grid: action.field,
             shapes: action.shape
         }
-    case DOWN:
+    case RESUME:
         return {
             ...state,
-            grid: action.newGrid,
-            shapes: action.shape
+            playing: true
         }
-    case LEFT:
+    case PAUSE_GAME:
         return {
             ...state,
-            grid: action.newGrid,
-            shapes: action.shape
+            playing: false
         }
-    case PLAY:
+    case LAUNCH:
         return {
             ...state,
-            shapes: action.arrayOfShapes,
             grid: action.field,
-            shapeIndex: 0,
-            status: action.status
-        }
-    case YOUR_ID:
-        return {
-            ...state,
-            yourId: action.id
-        }
-    case ADD_ROOM:
-      return {
-          ...state, 
-          roomlist: action.room
+            shapes: action.arrayOfShapes,
+            playing: true,
+            colors: ['#fff6b6','#f4cfb2', '#ffcccc', '#d9c2f0', '#ffd232', '#b5e8f7','#d18162'],
+            shapeIndex: 0
         }
     case ROOM_CHOICE:
         return {
             ...state,
             actualRoom: action.actualRoom
         }
-    case LOGIN_DATA:
+    case ADD_ROOM:
         return {
-          ...state, 
-            roomlist: action.room,
-            userlist: action.users
+            ...state,
+            rooms: action.roomlist
         }
+    case ALERT_POP:
+      return {
+          ...state,
+          message: action.message
+        }
+    case LOGIN_DATA:
+      return {
+          ...state,
+          rooms: action.rooms,
+          users: action.users,
+          playing: false,
+          nb: 0
+        }
+    case USER_ID:
+       return {
+        ...state,
+        yourID: action.id,
+        actualRoom: action.room
+    }
     default: 
       return state
   }
 }
 
-export default gameReducer
+export default gameReducer;
+
+

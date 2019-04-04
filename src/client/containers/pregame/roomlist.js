@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import socket from '../../socket';
-import {ENTER_ROOM} from '../../constants';
+import socket from '../../config/misc/socketConnect';
+import {ENTER_ROOM} from '../../config/constants';
 
 const enterRoom = (room) => {
-    socket.emit(ENTER_ROOM, room)
+   socket.emit(ENTER_ROOM, room)
 }
 
 const RoomRow = (room) => {
@@ -32,7 +32,7 @@ const Roomlist = ({rooms}) => {
 
 const mapStateTopProps = (state) => {
     return {
-        rooms: state.roomlist
+        rooms: state.rooms
     }
 }
 

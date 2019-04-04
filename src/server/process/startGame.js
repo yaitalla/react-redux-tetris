@@ -1,5 +1,5 @@
 import randomShapes from './shaper';
-import grider from './process/grid';
+import grider from './grid';
 
 const fieldCreator = (field, shapes) => {
     let ret = field;
@@ -18,12 +18,10 @@ const startGame = () => {
     let ret = randomShapes(shapes) //10pieces
     let grid = grider();
     const gameField = fieldCreator(grid, ret)
-    //console.log(gameField)
     return {
-        type: 'PLAY',
+        type: 'LAUNCH',
         arrayOfShapes: ret,
         field: gameField,
-        status: true
     }
 }
 

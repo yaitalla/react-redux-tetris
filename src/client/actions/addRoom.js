@@ -1,9 +1,9 @@
-export const ADD_ROOM = 'ADD_ROOM'
+import { ADD_ROOM } from '../config/constants';
 
-export const addRoom = (room) => {
+export const addRoom = (roomlist) => {
   return {
     type: ADD_ROOM,
-    room
+    roomlist
   }
 }
 

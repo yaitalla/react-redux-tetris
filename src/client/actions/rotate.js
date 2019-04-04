@@ -1,5 +1,5 @@
-import {checkBelow} from './collisionDown';
-import { ROTATE , REFRESH} from '../constants';
+import {checkBelow} from '../config/misc/collisionDown';
+import { ROTATE , REFRESH} from '../config/constants';
 
 const newGrid = (field) =>{
     const grid = []
@@ -41,7 +41,8 @@ const rotater = (shape) => {
 }
 
 
-export const rotate = (field, shapes, i) => {
+export const rotate = (state) => {
+    let field = state.grid, shapes = state.shapes, i = state.shapeIndex;
     if (!checkBelow(field)) {
         return { type: REFRESH }
     }

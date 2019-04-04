@@ -1,15 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { btn, nonstyle, flex } from './style';
-import socket from '../../socket';
-import {addRoom} from '../../actions/addRoom';
-import store from '../../store';
+import socket from '../../config/misc/socketConnect';
 
 
 const Roombutton = ({rooms}) => {
-    socket.on('ROOM_SENT', (data) => {
-       store.dispatch(addRoom(data))
-     })
+    
      let input
     return (
         <div style={flex}>
@@ -19,7 +15,7 @@ const Roombutton = ({rooms}) => {
                     if (!input.value.trim()) {
                         return
                     }
-                    socket.emit('CREATE_ROOM', input.value)
+                   socket.emit('CREATE_ROOM', input.value)
                     input.value = ''
                 }}
             >

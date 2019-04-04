@@ -1,12 +1,12 @@
 import fs  from 'fs'
 import debug from 'debug'
-import startGame from './startGame';
+import startGame from './process/startGame'
 
 let userlist = [];
 let roomlist = [];
 
 const logerror = debug('tetris:error')
-  , loginfo = debug('tetris:info')
+  , loginfo = debug('tetris:log')
 
 const initApp = (app, params, cb) => {
   const {host, port} = params
@@ -36,18 +36,17 @@ const initEngine = io => {
     if (userlist.indexOf(socket.id) == -1){
       userlist.push(socket.id)
     }
-    // console.log("User connected: " + socket.id)
-    io.to(socket.id).emit('USER_ID', {
-      type: 'YOUR_ID',
-      id: socket.id
-    });
-    
+    loginfo('connection')
     socket.emit('NEW_CONNECT', {
       type: 'LOGIN_DATA',
-      room: roomlist,
+      rooms: roomlist,
       users: userlist
     })
-   
+    io.to(socket.id).emit('USER_ID', {
+      type: 'USER_ID',
+      id: socket.id,
+      room: ""
+    });
     socket.on('CREATE_ROOM', (room) => {
       roomlist.push({
         name: room,
@@ -55,21 +54,6 @@ const initEngine = io => {
       })
       socket.emit('ROOM_SENT', roomlist)
     });
-    socket.on('LAUNCH', () => {
-      socket.emit('LAUNCH_GAME', startGame())
-    })
-    socket.on('PAUSE', () => {
-      socket.emit('PAUSE_GAME', {
-        type: 'PAUSE',
-        status: false
-      })
-    })
-    socket.on('RESUME', () => {
-      socket.emit('RESUME', {
-        type: 'RESUME',
-        status: true
-      })
-    })
     socket.on('ENTER_ROOM', (data) => { //enter room
       let ret;
       for (let i in roomlist) {
@@ -83,17 +67,36 @@ const initEngine = io => {
       })
       socket.join(data)
     })
-
-    socket.on('disconnect', (action) => {
-        userlist.splice(userlist.indexOf(socket.id), 1)// remove user from list
-        const chekRooms = (room) => {         //check if the user
-          return room.owner === socket.id     //was a room admin
-        }
-       while (roomlist.find(chekRooms)) {     //remove his rooms
-         roomlist.splice(roomlist.indexOf(roomlist.find(chekRooms)), 1)
-       }
-        console.log("User disconnected: " + socket.id)
+    socket.on('LAUNCH', (room) => {
+      io.in(room.name).emit('LAUNCH_GAME', startGame())
     })
+    socket.on('PAUSE', (room) => {
+      io.in(room.name).emit('PAUSE_GAME', {
+        type: 'PAUSE_GAME'
+      })
+    })
+    socket.on('RESUME', (room) => {
+      io.in(room.name).emit('RESUME', {
+        type: 'RESUME',
+      })
+    })
+   // loginfo("Socket connected: " + socket.id)
+    
+    // socket.on('action', (action) => {
+    //   if(action.type === 'server/ping'){
+    //     socket.emit('action', {type: 'pong'})
+    //   }
+    // })
+    socket.on('disconnect', (action) => {
+      userlist.splice(userlist.indexOf(socket.id), 1)// remove user from list
+    //   const chekRooms = (room) => {         //check if the user
+    //     return room.owner === socket.id     //was a room admin
+    //   }
+    //  while (roomlist.find(chekRooms)) {     //remove his rooms
+    //    roomlist.splice(roomlist.indexOf(roomlist.find(chekRooms)), 1)
+    //  }
+      console.log("User disconnected: " + socket.id)
+  })
   })
 }
 

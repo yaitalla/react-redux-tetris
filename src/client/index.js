@@ -1,12 +1,14 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import createLogger from 'redux-logger'
+import thunk from 'redux-thunk'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'                                                                                                                                                    
 import {storeStateMiddleWare} from './middleware/storeStateMiddleWare'
+import reducer from './reducers'
 import App from './containers/app'
-import store from './store'
-import { NEW_CONNECT, ROOM_CHOSEN, RESUME, PAUSE_GAME, LAUNCH_GAME, USER_ID, SHAPE_REQ, SHAPE_SENT } from './constants';
-import socket from './socket';
-
+import store from './config/store';
+import socketStream from './config/misc/socketHandling';
 
 ReactDom.render((
   <Provider store={store}>
@@ -14,26 +16,5 @@ ReactDom.render((
   </Provider>
 ), document.getElementById('tetris'))
 
-socket.on(NEW_CONNECT, (data) => {
-  store.dispatch(data)
-})
-socket.on(LAUNCH_GAME, (data) => {
-  store.dispatch(data)
-})
-socket.on(PAUSE_GAME, (data) => {
-  store.dispatch(data)
-})
-socket.on(RESUME, (data) => {
-  store.dispatch(data)
-})
-socket.on(USER_ID, (data) => {
-  store.dispatch(data)
-})
-socket.on(ROOM_CHOSEN, (data) => {
-  store.dispatch(data)
-})
-socket.on(SHAPE_SENT, (data) => {
-  store.dispatch(data)
-})
-
-// store.dispatch(alert('Soon, will be here a fantastic Tetris ...'))
+socketStream()
+// store.dispatch(alert('pop alert ...'))

@@ -1,18 +1,11 @@
-import { right} from './right';
-import { left } from './left';
-import { down } from './down';
-import { refresh } from './refresh';
+import {left} from './left';
+import {right} from './right';
+import {rotate} from './rotate';
+import {down} from './down';
 
-
-export const move = (way, field, shapes, i) => {
-    switch(way) {
-        case 'R':
-            return right(field, shapes, i)
-        case 'L':
-            return left(field, shapes, i)
-        case 'D':
-            return down(field, shapes, i)
-        default:
-            return refresh();
-    }
+export default {
+    left,
+    right,
+    rotate,
+    down
 }
