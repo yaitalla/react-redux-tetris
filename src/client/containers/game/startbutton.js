@@ -35,11 +35,11 @@ const PlayButton = ({myId, room, playing, shapeIndex}) => {
         <div>
             <button onClick={() => launchGame(room)} style={btn}>Start</button>
             {
-                ( playing === true ? <button onClick={() => pauseGame(room)}
+                shapeIndex >= 0 ? ( playing === true ? <button onClick={() => pauseGame(room)}
                                             style={btn}>Pause</button>
                                 :   <button onClick={() => resumeGame(room)}
                                             style={btn}>Play</button>
-                    )
+                    ) : null
             }
         </div>
     )

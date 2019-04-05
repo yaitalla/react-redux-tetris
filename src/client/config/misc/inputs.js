@@ -18,14 +18,15 @@ const keyboard = {
   {
       const keyDown = (e) => {
       if (/*e.metaKey === true || */store.getState().playing == false || boardKeys.indexOf(e.keyCode) === -1) {
+        console.log('key pressed')
         return;
       }
       const type = keyboard[e.keyCode];
-      // if (type === keydownActive) {
-      //     store.dispatch(alert('pop alert ...'))
-      //     return;
-      // }
-      // keydownActive = type;
+      if (type === keydownActive) {
+          // store.dispatch(alert('pop alert ...'))
+          return;
+      }
+      keydownActive = type;
       store.dispatch(move[type](store.getState()))
     };
 

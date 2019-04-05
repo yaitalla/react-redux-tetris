@@ -1,7 +1,7 @@
 export const gameScreen = {
     display: "flex",
     textAlign: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
     backgroundColor: "#f4f4f4",
     width: '90%',
     height: '80vh',
@@ -14,32 +14,47 @@ export const screen = {
     width: '90%',
     
 }
-
+export const title = {
+  border: "1px solid silver",
+    height: "50%",
+    borderRadius: "40px",
+}
 export const boxe = {
     border: '1px dashed white',
     height: '15px',
     width: '15px',
     textAlign: 'center'
 }
-
+export const game = {
+  display: "flex",
+  justifyContent: "center",
+  flexDirection: "row",
+}
 export const rows = {
+  display: "flex",
+  justifyContent: "center",
+  flexDirection: "row",
+}
+export const rowstat = {
     display: "flex",
     justifyContent: "center",
     flexDirection: "row",
 }
 
 export const field = {
-  //    border: '1px dashed #999',
+      border: '2px solid black',
     display: "flex",
     flexDirection: "column",
-    width: '260px',
+    width: '160px',
+    height: "320px",
     justifyContent: "center"
 }
 export const datafield = {
- display: "flex",
- flexDirection: "column",
- width: '260px',
- justifyContent: "center"
+  border: '2px solid black',
+  display: "flex",
+  flexDirection: "column",
+  width: '160px',
+  height: "320px",
 }
 
   export const noBullet = {

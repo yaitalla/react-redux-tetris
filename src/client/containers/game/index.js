@@ -1,13 +1,13 @@
 import React from 'react'
 import PlayButton from './startbutton'
-import { gameScreen } from './style'
+import { gameScreen, game } from './style'
 import Screen from './screen'
 import { connect } from 'react-redux';
 
 
 const Game = ({shapeIndex}) => {
     return (
-        <div>
+        <div style={game} >
             <PlayButton/>
             <div style={gameScreen}>
                  {shapeIndex >= 0 ? <Screen/> : null}

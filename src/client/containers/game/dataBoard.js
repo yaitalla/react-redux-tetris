@@ -1,16 +1,16 @@
 import React from 'react';
-import {board, rows, datafield} from './style';
+import {board, rowstat, datafield, title} from './style';
 import { connect } from 'react-redux';
 
 
 const applyColor = (color, mapKey) => {
   const setStyle = (color) => {
-    return  {
-      height: '24px',
-      width: '24px',
-      textAlign: 'center',
-      background: color
-    }
+        return  {
+          height: '18px',
+          width: '18px',
+          textAlign: 'center',
+          background: color
+         }
   }
   return (
     <div key={mapKey} style={setStyle(color)}>{''}</div>
@@ -20,7 +20,7 @@ const applyColor = (color, mapKey) => {
 const Row = ({stat, color}) => {
   return (
     <div>
-      <div style={rows}>
+      <div style={rowstat}>
         {
           stat.map((square, i) =>
             square == '2' ? applyColor(color, i) :
@@ -49,17 +49,24 @@ const shapeView = (data) => {
 const DataBoard = ({next}) => {
     return (
         <div style={datafield}>
-          <h2>Next shape</h2>
-        {
-          next.shape ? shapeView(next) : null
-        }
+          
+          <div style={title}>
+            <h4>Next shape</h4>
+            {
+              next.shape ? shapeView(next) : null
+            }
+          </div>
+          <div style={title}>
+            <h4>opponents</h4>
+          </div>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        next: state.shapes[state.shapeIndex+1]
+        next: state.shapes[state.shapeIndex+1],
+
     }
 }
 

@@ -3,6 +3,15 @@ export const gameInfo = {
     flexDirection: "row",
     justifyContent: "space-around"
 }
+export const title = {
+  display: "flex",
+  border: "1px solid silver",
+    flexDirection: "column",
+    height: "50vh",
+    textAlign: "center",
+    borderRadius: "20px",
+    width: "50vw"
+}
 
 export const formstyle = {
     display: "flex",
