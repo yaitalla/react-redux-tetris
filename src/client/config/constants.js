@@ -15,6 +15,7 @@ export const MOVE = 'MOVE';
 export const RESUME = 'RESUME';
 export const RIGHT = 'RIGHT';
 export const LEFT = 'LEFT';
+export const DROPDOWN = 'DROPDOWN';
 export const DOWN = 'DOWN';
 export const ROTATE = 'ROTATE';
 export const ADD_SHAPE = 'ADD_SHAPE';

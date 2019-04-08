@@ -41,6 +41,8 @@ const PlayButton = ({myId, room, playing, shapeIndex}) => {
                                             style={btn}>Play</button>
                     ) : null
             }
+            <p>inputs desabled</p>
+            <p>edit field.js</p>
         </div>
     )
 }

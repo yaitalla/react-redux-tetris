@@ -8,6 +8,7 @@ const Screen = ({nb}) => {
     //shapeProvider(current, shapes, room)
     return (
         <div style={gameScreen}>
+
             <GameField/>
             <DataBoard/>
         </div>

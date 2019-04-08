@@ -18,13 +18,35 @@ export const formstyle = {
     flexDirection: "row",
     justifyContent: "center",
 }
-
+export const head = {
+    color: 'red',
+    borderRadius: "20px",
+    border: "5px solid black",
+    width: "45vw",
+    textAlign: "center",
+    backgroundColor: "#f4f4f4"
+}
 export const flex = {
     display: "flex",
     width: "100%",
-    justifyContent: "center"
-  }
-  
+    justifyContent: "center",
+}
+
+export const img = {
+    width: "30vw",
+    height: "30vh",
+    borderRadius: "20px",
+}
+
+export const headStyle = {
+    display: "flex",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column"
+}
+
+
   export const noBullet = {
     display: "flex",
     justifyContent: "center",
@@ -34,20 +56,21 @@ export const flex = {
   
   export const btn = {
       textAlign: "center",
-    fontSize: "15px",
-    borderRadius: "20px",
-    color: "black",
-    height: "35px",
+    fontSize: "20px",
+    fontFamily: '"Comic Sans MS", cursive, sans-serif',
+    borderRadius: "15px",
+    color: "red",
+    height: "5vh",
     boxShadow: "3px 3px 3px 1px rgb(100, 91, 124)",
     cursor: "pointer",
-    backgroundColor: "linear-gradient(to right top, #d16ba5, #d48ac0, #d8a7d6, #dec3e7, #e8ddf4, #dde9ff, #d5f5ff, #d8ffff, #affff2, #9affd0, #a4ff9e, #c5fb5f)",
     margin: "25px"
   }
   
 export const nonstyle = {
-    height: "30px",
+    height: "4vh",
     fontSize: "15px",
     boxShadow: "3px 3px 3px 1px rgb(100, 91, 124)",
     borderRadius: "10px",
+    backgroundColor: "linear-gradient(to right top, #d16ba5, #d48ac0, #d8a7d6, #dec3e7, #e8ddf4, #dde9ff, #d5f5ff, #d8ffff, #affff2, #9affd0, #a4ff9e, #c5fb5f)",
     alignSelf: "center",
 }

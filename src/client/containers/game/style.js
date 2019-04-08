@@ -3,6 +3,7 @@ export const gameScreen = {
     textAlign: "center",
     justifyContent: "space-around",
     backgroundColor: "#f4f4f4",
+    alignItems: "center",
     width: '90%',
     height: '80vh',
   }
@@ -20,7 +21,7 @@ export const title = {
     borderRadius: "40px",
 }
 export const boxe = {
-    border: '1px dashed white',
+    border: '1px solid white',
     height: '15px',
     width: '15px',
     textAlign: 'center'
@@ -28,7 +29,8 @@ export const boxe = {
 export const game = {
   display: "flex",
   justifyContent: "center",
-  flexDirection: "row",
+    alignItems: "center",
+    flexDirection: "row",
 }
 export const rows = {
   display: "flex",
@@ -61,7 +63,6 @@ export const datafield = {
     display: "flex",
     justifyContent: "center",
     width: "100%",
-    justifyContent: "space-around",
     listStyleType: "none",
   }
   

@@ -2,26 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {rows, field, boxe} from './style';
 import inputs from '../../config/misc/inputs'
-import socket from '../../config/misc/socketConnect';
+// import socket from '../../config/misc/socketConnect';
+import { applyColor } from '../../config/misc/applyColor';
 import {shapeProvider} from '../../config/misc/shapeProvider';
+import store from '../../config/store';
+import { dropdown } from '../../actions/dropdown';
 
 const setStyle = (box, curr, shapes, color) => {
     if (box == 2) {
-        return {
-            border: '1px dashed #999',
-             height: '15px',
-             width: '15px',
-             textAlign: 'center',
-             backgroundColor: color[shapes[curr].id]
-         }
+        return (applyColor(color[shapes[curr].id]))
     } else if (box > 2){
-        return {
-            border: '1px dashed #999',
-             height: '15px',
-             width: '15px',
-             textAlign: 'center',
-             backgroundColor: color[box-3]
-         }
+        return (applyColor(color[box-3]))
     } else {
         return boxe
     }
@@ -40,13 +31,17 @@ const Row = ({row, curr, shapes, color}) => {
 } 
 
 const GameField = ({colors, moving, grid, current, shapes, room, nbr}) => {
+    setTimeout(() => {
+            store.dispatch(dropdown(grid, shapes[current].id, shapes, current, room))
+        }, 500)
     shapeProvider(current, shapes, room)
-    if (moving != true) {inputs()}
+    //if (moving != true) {inputs()}
     return (
         <div style={field}>
             {
                 grid.map((rw, i) => <Row key={i} row={rw} curr={current} shapes={shapes} color={colors} nb={nbr}/>)
             }
+            
         </div>
     )
 }

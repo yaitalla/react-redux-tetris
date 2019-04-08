@@ -31,18 +31,6 @@ const gridMaker = (field) =>{
     return grid;
 }
 
-const touchDown = (field, id) => {
-    let i, j;
-    for ( i=0; i<20; i++) {
-        for( j=0; j<10; j++) {
-            if (field[i][j] == 2){
-                field[i][j] = id+3;
-            }
-        }
-    }
-    return field;
-}
-
 const moveLeft = (field, shapes, index, nbr) => {
     const grid = gridMaker(field);
     let i, j;
