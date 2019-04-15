@@ -17,7 +17,7 @@ const Game = ({shapeIndex}) => {
 }
 const mapStateToProps = (state) => {
     return {
-        shapeIndex: state.shapeIndex
+        shapeIndex: state.grid.shapeIndex
     }
 }
 

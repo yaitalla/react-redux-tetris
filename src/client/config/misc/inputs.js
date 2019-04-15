@@ -17,7 +17,7 @@ const keyboard = {
   const inputs = () => 
   {
       const keyDown = (e) => {
-      if (/*e.metaKey === true || */store.getState().playing == false || boardKeys.indexOf(e.keyCode) === -1) {
+      if (/*e.metaKey === true || */store.getState().grid.playing == false || boardKeys.indexOf(e.keyCode) === -1) {
         console.log('key pressed')
         return;
       }
@@ -27,7 +27,7 @@ const keyboard = {
           return;
       }
       keydownActive = type;
-      store.dispatch(move[type](store.getState()))
+      store.dispatch(move[type](store.getState().grid))
     };
 
     const keyup = (e) => {

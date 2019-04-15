@@ -16,7 +16,7 @@ const App = ({actualroom}) => {
 
 const mapStateToProps = (state) => {
   return {
-    actualroom: state.actualRoom,
+    actualroom: state.game.actualRoom,
 
   }
 }

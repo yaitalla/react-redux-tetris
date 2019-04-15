@@ -27,10 +27,4 @@ const Roombutton = ({rooms}) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        rooms: state.rooms
-    }
-}
-
 export default Roombutton;

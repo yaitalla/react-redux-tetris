@@ -33,7 +33,7 @@ const Roomlist = ({rooms}) => {
 
 const mapStateTopProps = (state) => {
     return {
-        rooms: state.rooms
+        rooms: state.game.rooms
     }
 }
 

@@ -17,7 +17,7 @@ const Screen = ({nb}) => {
 
 const mapStateToProps = (state) => {
     return  {
-        nb: state.nb
+        nb: state.game.nb
     }
 }
 

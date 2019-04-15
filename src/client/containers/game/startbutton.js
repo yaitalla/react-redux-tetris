@@ -42,17 +42,16 @@ const PlayButton = ({myId, room, playing, shapeIndex}) => {
                     ) : null
             }
             <p>inputs desabled</p>
-            <p>edit field.js</p>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        myId: state.yourId,
-        room: state.actualRoom,
-        playing: state.playing,
-        shapeIndex: state.shapeIndex,
+        myId: state.game.yourId,
+        room: state.game.actualRoom,
+        playing: state.grid.playing,
+        shapeIndex: state.grid.shapeIndex,
     }
 }
 

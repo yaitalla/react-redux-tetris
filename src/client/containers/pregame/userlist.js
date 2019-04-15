@@ -27,8 +27,8 @@ const Userlist = ({users, id}) => {
 }
 const mapStateToProps = (state) => {
     return {
-        users: state.users,
-        id: state.yourID,
+        users: state.game.users,
+        id: state.game.yourID,
     }
 }
 

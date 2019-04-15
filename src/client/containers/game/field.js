@@ -48,13 +48,13 @@ const GameField = ({colors, moving, grid, current, shapes, room, nbr}) => {
 
 const mapStateToProps = (state) => {
     return {
-        grid: state.grid,
-        current: state.shapeIndex,
-        shapes: state.shapes,
-        colors: state.colors,
-        nbr: state.nb,
-        moving: state.moving,
-        room: state.actualRoom
+        grid: state.grid.grid,
+        current: state.grid.shapeIndex,
+        shapes: state.grid.shapes,
+        colors: state.grid.colors,
+        nbr: state.game.nb,
+        moving: state.game.moving,
+        room: state.game.actualRoom
     }
 }
 

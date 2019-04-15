@@ -65,8 +65,7 @@ const DataBoard = ({next}) => {
 
 const mapStateToProps = (state) => {
     return {
-        next: state.shapes[state.shapeIndex+1],
-
+        next: state.grid.shapes[state.grid.shapeIndex+1],
     }
 }
 
