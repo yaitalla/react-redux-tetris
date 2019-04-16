@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import socket from '../../config/misc/socketConnect';
 import {ENTER_ROOM} from '../../config/constants';
-import { title } from './style';
+import { title, flex, btn, btnRoom, styleRoom, font } from './style';
 
 const enterRoom = (room) => {
    socket.emit(ENTER_ROOM, room)
@@ -11,9 +11,10 @@ const enterRoom = (room) => {
 const RoomRow = (room) => {
     return (
         <div>
-            {room.name}
-            <button onClick={() => enterRoom(room.name)}>enter</button>
-
+            <div style={styleRoom}>
+                <div style={font} >{room.name}</div>
+                <button  style={btnRoom} onClick={() => enterRoom(room.name)}>enter</button>
+            </div>
         </div>
     )
     

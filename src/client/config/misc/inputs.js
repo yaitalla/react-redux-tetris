@@ -13,11 +13,12 @@ const keyboard = {
   
   let keydownActive;
   const boardKeys = Object.keys(keyboard).map(e => parseInt(e, 10));
-  
+  const gridState = store.getState().grid;
+  console.log(gridState)
   const inputs = () => 
   {
       const keyDown = (e) => {
-      if (/*e.metaKey === true || */store.getState().grid.playing == false || boardKeys.indexOf(e.keyCode) === -1) {
+      if (/*e.metaKey === true || */gridState.playing == false || boardKeys.indexOf(e.keyCode) === -1) {
         console.log('key pressed')
         return;
       }
@@ -27,7 +28,7 @@ const keyboard = {
           return;
       }
       keydownActive = type;
-      store.dispatch(move[type](store.getState().grid))
+      store.dispatch(move[type](gridState))
     };
 
     const keyup = (e) => {

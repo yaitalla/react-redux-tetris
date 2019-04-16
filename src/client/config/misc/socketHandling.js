@@ -14,6 +14,7 @@ const socketStream = () => {
         store.dispatch(data)
       })
       socket.on(LAUNCH_GAME, (data) => {
+        store.dispatch({type: RESUME})
         store.dispatch(data)
       })
       socket.on(PAUSE_GAME, (data) => {

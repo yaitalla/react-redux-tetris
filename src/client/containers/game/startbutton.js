@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {btn} from './style';
+import {btn, img, sidebar} from './style';
 import socket from '../../config/misc/socketConnect';
 import { LAUNCH, PAUSE, RESUME } from '../../config/constants'
+import logo from '../pregame/redribbon.jpg';
+
 
 const launchGame = (room) => {
      socket.emit(LAUNCH, room)
@@ -15,6 +17,7 @@ const resumeGame = (room) => {
 }
 
 const PlayButton = ({myId, room, playing, shapeIndex}) => {
+    console.log(myId, room.owner)
     // return (
     //     <div>
     //         {
@@ -30,27 +33,30 @@ const PlayButton = ({myId, room, playing, shapeIndex}) => {
     //                 )
     //         }
     //     </div>
-    // )
     return (
-        <div>
-            <button onClick={() => launchGame(room)} style={btn}>Start</button>
+        <div style={sidebar}>
+            <button disabled={myId != room.owner} 
+                onClick={() => launchGame(room)} style={btn}>Start</button>
+            <img style={img} src={logo} ></img>
             {
-                shapeIndex >= 0 ? ( playing === true ? <button onClick={() => pauseGame(room)}
-                                            style={btn}>Pause</button>
-                                :   <button onClick={() => resumeGame(room)}
+                shapeIndex >= 0 ? ( playing === true ? <button disabled={myId != room.owner} 
+                                                    onClick={() => pauseGame(room)}
+                                                style={btn}>Pause</button>
+                                :   <button disabled={myId != room.owner}
+                                                onClick={() => resumeGame(room)}
                                             style={btn}>Play</button>
                     ) : null
             }
-            <p>inputs desabled</p>
+            <p>inputs disabled</p>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        myId: state.game.yourId,
+        myId: state.game.yourID,
         room: state.game.actualRoom,
-        playing: state.grid.playing,
+        playing: state.game.playing,
         shapeIndex: state.grid.shapeIndex,
     }
 }

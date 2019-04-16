@@ -52,8 +52,41 @@ export const headStyle = {
     justifyContent: "center",
     width: "100%",
     listStyleType: "none",
+    color: "pink"
   }
-  
+
+  export const font = {
+    margin: "3px",
+    fontSize: "25px",
+    fontFamily: '"Comic Sans MS", cursive, sans-serif',
+    display: "flex",
+    justifyContent: "center",
+  }
+  export const fontID = {
+    margin: "3px",
+    fontColor: "red",
+    fontSize: "25px",
+    fontFamily: '"Comic Sans MS", cursive, sans-serif',
+    display: "flex",
+    justifyContent: "center",
+  }
+
+  export const styleRoom = {
+      display: "flex",
+    justifyContent: "center",
+  }
+  export const btnRoom = {
+    textAlign: "center",
+  fontSize: "20px",
+  fontFamily: '"Comic Sans MS", cursive, sans-serif',
+  borderRadius: "15px",
+  color: "red",
+  height: "3vh",
+  boxShadow: "3px 3px 3px 1px rgb(100, 91, 124)",
+  cursor: "pointer",
+  margin: "5px"
+}
+
   export const btn = {
       textAlign: "center",
     fontSize: "20px",

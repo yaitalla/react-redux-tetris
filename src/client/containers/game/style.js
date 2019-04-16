@@ -5,8 +5,33 @@ export const gameScreen = {
     backgroundColor: "#f4f4f4",
     alignItems: "center",
     width: '90%',
-    height: '80vh',
+    height: '60vh',
   }
+
+  export const roomheader = {
+    display: "flex",
+    justifyContent: "center",
+    
+  }
+
+export const fullscreen = {
+  display: "flex",
+  flexDirection: "column"
+}
+
+export const sidebar = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  flexDirection: "column"
+}
+
+
+export const img = {
+  width: "5vw",
+  height: "5vh",
+  borderRadius: "10px",
+}
 
 export const screen = {
   display: "flex",
@@ -30,6 +55,8 @@ export const game = {
   display: "flex",
   justifyContent: "center",
     alignItems: "center",
+    height: '98vh',
+    textAlign: "center",
     flexDirection: "row",
 }
 export const rows = {
@@ -52,7 +79,6 @@ export const field = {
     justifyContent: "center"
 }
 export const datafield = {
-  border: '2px solid black',
   display: "flex",
   flexDirection: "column",
   width: '160px',

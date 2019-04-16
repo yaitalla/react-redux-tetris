@@ -1,23 +1,44 @@
 import React from 'react'
 import PlayButton from './startbutton'
-import { gameScreen, game } from './style'
+import { gameScreen, game, fullscreen, roomheader } from './style'
 import Screen from './screen'
 import { connect } from 'react-redux';
 
-
-const Game = ({shapeIndex}) => {
+const roomHeader = (room, users) => {
+    let ownerIndex = users.indexOf(room.owner) + 1
     return (
-        <div style={game} >
-            <PlayButton/>
-            <div style={gameScreen}>
-                 {shapeIndex >= 0 ? <Screen/> : null}
+        <div style={roomheader}>
+            <div>
+                <h3>Room Name : {room.name}</h3>
+                {
+                    ownerIndex === 0 ? <h3>room owner disconnected</h3>
+                    : <h3>Owner : Player{ownerIndex}</h3>
+                }
+                
             </div>
         </div>
     )
 }
+
+const Game = ({shapeIndex, room, users}) => {
+    return (
+        <div style={fullscreen}>
+            {roomHeader(room, users)}
+            <div style={game} >
+                <PlayButton/>
+                <div style={gameScreen}>
+                    {shapeIndex >= 0 ? <Screen/> : null}
+                </div>
+            </div>
+        </div>
+        
+    )
+}
 const mapStateToProps = (state) => {
     return {
-        shapeIndex: state.grid.shapeIndex
+        shapeIndex: state.grid.shapeIndex,
+        room: state.game.actualRoom,
+        users: state.game.users
     }
 }
 

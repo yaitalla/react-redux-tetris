@@ -49,12 +49,9 @@ const shapeView = (data) => {
 const DataBoard = ({next}) => {
     return (
         <div style={datafield}>
-          
           <div style={title}>
             <h4>Next shape</h4>
-            {
-              next.shape ? shapeView(next) : null
-            }
+            { next.shape ? shapeView(next) : null }
           </div>
           <div style={title}>
             <h4>opponents</h4>

@@ -6,7 +6,7 @@ import Userlist from './userlist'
 import { gameInfo } from './style';
 import Title from './title';
 
-const Pregame = () => {
+const Pregame = ({rooms}) => {
     return (
         <div>
             <Title/>
@@ -19,4 +19,10 @@ const Pregame = () => {
     )
 }
 
-export default Pregame;
+const mapStateToProps = (state) => {
+    return {
+        rooms: state.game.rooms
+    }
+}
+
+export default connect (mapStateToProps)(Pregame);
