@@ -32,13 +32,12 @@ const Row = ({row, curr, shapes, color}) => {
 
 const GameField = ({colors, moving, grid, current, shapes, room, playing, nbr}) => {
     if (playing === true){
-        console.log(playing)
             setTimeout(() => {
                 store.dispatch(dropdown(grid, shapes[current].id, shapes, current, room))
             }, 500)
     }
     shapeProvider(current, shapes, room)
-    if (moving != true) {inputs()}
+    // inputs()
     return (
         <div style={field}>
             {

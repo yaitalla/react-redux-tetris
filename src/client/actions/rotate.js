@@ -42,7 +42,7 @@ const rotater = (shape) => {
 
 
 export const rotate = (state) => {
-    let field = state.grid, shapes = state.shapes, i = state.shapeIndex;
+    let field = state.grid.grid, shapes = state.grid.shapes, i = state.grid.shapeIndex;
     if (!checkBelow(field)) {
         return { type: REFRESH }
     }

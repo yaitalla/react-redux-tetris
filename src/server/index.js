@@ -2,6 +2,7 @@ import fs  from 'fs'
 import debug from 'debug'
 import startGame from './process/startGame'
 import randomShapes from './process/shaper';
+import lineMalus from './process/malus';
 
 let userlist = [];
 let roomlist = [];
@@ -62,11 +63,17 @@ const initEngine = io => {
           ret = roomlist[i]
         }
       }
+      socket.join(data)
+      io.in(data).clients((err , clients) => {
+        ret.users = clients;
+        console.log(ret)
+      });
       socket.emit('ROOM_CHOSEN', {
         type: 'ROOM_CHOICE',
-        actualRoom: ret
+        actualRoom: {
+          ...ret,
+        }
       })
-      socket.join(data)
     })
     socket.on('LAUNCH', (room) => {
       io.in(room.name).emit('LAUNCH_GAME', startGame())
@@ -76,6 +83,12 @@ const initEngine = io => {
         type: 'PAUSE_GAME'
       })
     })
+
+    socket.on('MALUS', (data) => {
+      console.log(data)
+      //io.in(data.room.name).emit('MALUS', lineMalus(data))
+    })
+
     socket.on('RESUME', (room) => {
       io.in(room.name).emit('RESUME', {
         type: 'RESUME',

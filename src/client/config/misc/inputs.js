@@ -13,27 +13,23 @@ const keyboard = {
   
   let keydownActive;
   const boardKeys = Object.keys(keyboard).map(e => parseInt(e, 10));
-  const gridState = store.getState().grid;
-  console.log(gridState)
   const inputs = () => 
   {
       const keyDown = (e) => {
-      if (/*e.metaKey === true || */gridState.playing == false || boardKeys.indexOf(e.keyCode) === -1) {
+      if (e.metaKey === true || store.getState().grid.playing == false || boardKeys.indexOf(e.keyCode) === -1) {
         console.log('key pressed')
         return;
       }
       const type = keyboard[e.keyCode];
-      if (type === keydownActive) {
-          // store.dispatch(alert('pop alert ...'))
-          return;
-      }
+    //   if (type === keydownActive) {
+    //        store.dispatch(alert('release key'))
+    //       return;
+    //   }
       keydownActive = type;
-      store.dispatch(move[type](gridState))
+      store.dispatch(move[type](store.getState()))
     };
 
     const keyup = (e) => {
-          // console.log("key Up")
-          //console.log(store.getState())
           store.dispatch(alert('pop alert ...'))
       }
         

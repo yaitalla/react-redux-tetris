@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {btn, img, sidebar} from './style';
+import {btn, img, sidebar, roomheader, roominfo, divroominfo} from './style';
 import socket from '../../config/misc/socketConnect';
 import { LAUNCH, PAUSE, RESUME } from '../../config/constants'
 import logo from '../pregame/redribbon.jpg';
@@ -15,26 +15,27 @@ const pauseGame = (room) => {
 const resumeGame = (room) => {
    socket.emit(RESUME, room)
 }
-
-const PlayButton = ({myId, room, playing, shapeIndex}) => {
-    console.log(myId, room.owner)
-    // return (
-    //     <div>
-    //         {
-    //             shapeIndex < 0 ? <button onClick={launchGame}
-    //                             disabled={myId != room.owner}
-    //                                         style={btn}>Start</button>
-    //             : ( playing == true ? <button onClick={pauseGame}
-    //                             disabled={myId != room.owner}
-    //                                         style={btn}>Pause</button>
-    //                             :   <button onClick={resumeGame}
-    //                             disabled={myId != room.owner}
-    //                                         style={btn}>Play</button>
-    //                 )
-    //         }
-    //     </div>
+const roomHeader = (room, users) => {
+    let ownerIndex = users.indexOf(room.owner) + 1
+    return (
+        <div style={roomheader}>
+            <div style={divroominfo} >
+                <h3 style={roominfo} >Room Name: {room.name}</h3>
+                
+            </div>
+            <div style={divroominfo}>
+                {
+                    ownerIndex === 0 ? <h3 style={roominfo}>room owner disconnected</h3>
+                    : <h3 style={roominfo}>Admin: Player{ownerIndex}</h3>
+                }
+            </div>
+        </div>
+    )
+}
+const PlayButton = ({myId, room, playing, shapeIndex, users}) => {
     return (
         <div style={sidebar}>
+            {roomHeader(room, users)}
             <button disabled={myId != room.owner} 
                 onClick={() => launchGame(room)} style={btn}>Start</button>
             <img style={img} src={logo} ></img>
@@ -57,6 +58,7 @@ const mapStateToProps = (state) => {
         myId: state.game.yourID,
         room: state.game.actualRoom,
         playing: state.game.playing,
+        users: state.game.users,
         shapeIndex: state.grid.shapeIndex,
     }
 }

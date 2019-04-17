@@ -23,7 +23,7 @@ const roomHeader = (room, users) => {
 const Game = ({shapeIndex, room, users}) => {
     return (
         <div style={fullscreen}>
-            {roomHeader(room, users)}
+            
             <div style={game} >
                 <PlayButton/>
                 <div style={gameScreen}>

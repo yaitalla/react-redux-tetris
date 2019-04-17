@@ -19,7 +19,7 @@ const Roombutton = ({rooms}) => {
                     input.value = ''
                 }}
             >
-                <input placeholder="enter room's name" style={nonstyle} ref={node => (input = node)} />
+                <input placeholder="enter room's name..." style={nonstyle} ref={node => (input = node)} />
                 <button style={btn} type="submit">Add room</button>
             </form>
         </div>

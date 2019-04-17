@@ -1,5 +1,5 @@
 import socket from '../config/misc/socketConnect';
-import { GAME_OVER , ADD_SHAPE} from '../config/constants';
+import { GAME_OVER , ADD_SHAPE, MALUS} from '../config/constants';
 
 const checkLine = (line) => {
     let x = 0;
@@ -23,10 +23,11 @@ const gridMaker = () => {
     return grid;
 }
 
-const removeLiner = (lines, field) => {
+const removeLiner = (lines, field, user, room) => {
     // console.log(field, lines)
     let grid = gridMaker(), gap = lines.length;
     // let min = Math.min(lines), max = Math.max(lines);
+    socket.emit(MALUS, {user, room})
     if (gap == 1) {
         let i = lines[0]
         field.splice(i, 1)
@@ -35,7 +36,7 @@ const removeLiner = (lines, field) => {
     }
 }
 
-const checkForLine = (field) => {
+const checkForLine = (field, room, user) => {
     let linesArray = [];
     for (let i=0; i<20; i++){
         if (checkLine(field[i]) == true) {
@@ -43,13 +44,13 @@ const checkForLine = (field) => {
         }
     }
     if (linesArray.length > 0){
-        return removeLiner(linesArray, field)
+        return removeLiner(linesArray, field, user, room)
     }
     return field
 }
 
-export const add = (field, shapes, index, room) => {
-    let ret = checkForLine(field);
+export const add = (field, shapes, index, room, user) => {
+    let ret = checkForLine(field, room, user);
     for (let i=1; i<5; i++) {
         for(let j=3; j<7; j++) {
             if (shapes[index+1].shape[i-1][j-3] == 2) {

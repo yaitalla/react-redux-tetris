@@ -24,6 +24,7 @@ export const head = {
     border: "5px solid black",
     width: "45vw",
     textAlign: "center",
+    fontFamily: '"Comic Sans MS", cursive, sans-serif',
     backgroundColor: "#f4f4f4"
 }
 export const flex = {
@@ -101,6 +102,7 @@ export const headStyle = {
   
 export const nonstyle = {
     height: "4vh",
+    fontFamily: '"Comic Sans MS", cursive, sans-serif',
     fontSize: "15px",
     boxShadow: "3px 3px 3px 1px rgb(100, 91, 124)",
     borderRadius: "10px",

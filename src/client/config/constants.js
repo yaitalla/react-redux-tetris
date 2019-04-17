@@ -25,3 +25,4 @@ export const GAME_OVER = 'GAME_OVER';
 export const ROOM_SENT = 'ROOM_SENT';
 export const ADD_ROOM = 'ADD_ROOM';
 export const MOVING = 'MOVING';
+export const MALUS = 'MALUS';

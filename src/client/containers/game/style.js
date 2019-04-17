@@ -8,11 +8,6 @@ export const gameScreen = {
     height: '60vh',
   }
 
-  export const roomheader = {
-    display: "flex",
-    justifyContent: "center",
-    
-  }
 
 export const fullscreen = {
   display: "flex",
@@ -85,6 +80,20 @@ export const datafield = {
   height: "320px",
 }
 
+export const roomheader = {
+  display: "flex",
+  justifyContent: "center",
+  flexDirection: "column",
+  borderRadius: "40px",
+  boxShadow: "1px 1px 1px 1px pink", 
+}
+export const roominfo = {
+  fontFamily: '"Comic Sans MS", cursive, sans-serif',
+}
+export const divroominfo = {
+  
+}
+
   export const noBullet = {
     display: "flex",
     justifyContent: "center",
@@ -96,7 +105,8 @@ export const datafield = {
     width: "100px",
     fontSize: "20px",
     borderRadius: "40px",
-    color: "black",
+    fontFamily: '"Comic Sans MS", cursive, sans-serif',
+    color: "red",
     height: "45px",
     boxShadow: "4px 4px 4px 1px rgb(100, 91, 124)",
     cursor: "pointer",

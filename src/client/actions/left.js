@@ -60,7 +60,7 @@ const moveLeft = (field, shapes, index, nbr) => {
 }
 
 export const left = (state) => {
-    let field = state.grid, nb = state.nb, shapes = state.shapes,
-                index = state.shapeIndex, room = state.actualroom;
+    let field = state.grid.grid, nb = state.game.nb, shapes = state.grid.shapes,
+                index = state.grid.shapeIndex, room = state.game.actualroom;
     return moveLeft(field, shapes, index, nb)
 }

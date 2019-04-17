@@ -19,7 +19,7 @@ const gridMaker = (field) =>{
     return grid;
 }
 
-const touchDown = (field, id, shapes, index, room) => {
+const touchDown = (field, id, shapes, index, room, user) => {
     let i, j;
     for ( i=0; i<20; i++) {
         for( j=0; j<10; j++) {
@@ -28,17 +28,17 @@ const touchDown = (field, id, shapes, index, room) => {
             }
         }
     }
-    return add(field, shapes, index, room);
+    return add(field, shapes, index, room, user);
 }
 
-const moveDown = (field, id, shapes, index, room) => {
+const moveDown = (field, id, shapes, index, room, user) => {
     const grid = gridMaker(field)
     let i, j, x = 0;
     for ( i=0; i<20; i++) {
         for( j=0; j<10; j++) {
             if ((field[i][j] == 2) && (i < 20)){
                 if (!checkBelow(field)){
-                    return touchDown(field, id, shapes, index, room)
+                    return touchDown(field, id, shapes, index, room, user)
                 } else {
                     grid[i+1][j] = 2;
                     
@@ -56,7 +56,8 @@ const moveDown = (field, id, shapes, index, room) => {
 }
 
 export const down = (state) => {
-    let field = state.grid, id = state.shapes[state.shapeIndex].id, shapes = state.shapes,
-                index = state.shapeIndex, room = state.actualRoom;
-    return moveDown(field, id, shapes, index, room)
+    let field = state.grid.grid, id = state.grid.shapes[state.grid.shapeIndex].id, shapes = state.grid.shapes,
+                index = state.grid.shapeIndex, room = state.game.actualRoom,
+                user = state.game.yourID;
+    return moveDown(field, id, shapes, index, room, user)
 }
