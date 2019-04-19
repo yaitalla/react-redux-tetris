@@ -66,7 +66,7 @@ const initEngine = io => {
       socket.join(data)
       io.in(data).clients((err , clients) => {
         ret.users = clients;
-        console.log(ret)
+        // console.log(ret)
       });
       socket.emit('ROOM_CHOSEN', {
         type: 'ROOM_CHOICE',
@@ -85,7 +85,7 @@ const initEngine = io => {
     })
 
     socket.on('MALUS', (data) => {
-      console.log(data)
+      console.log('malus', data)
       //io.in(data.room.name).emit('MALUS', lineMalus(data))
     })
 
