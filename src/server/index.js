@@ -52,7 +52,8 @@ const initEngine = io => {
     socket.on('CREATE_ROOM', (room) => {
       roomlist.push({
         name: room,
-        owner: socket.id
+        owner: socket.id,
+        users: []
       })
       socket.emit('ROOM_SENT', roomlist)
     });
@@ -61,13 +62,11 @@ const initEngine = io => {
       for (let i in roomlist) {
         if (roomlist[i].name == data) {
           ret = roomlist[i]
+          roomlist[i].users.push(socket.id)
         }
       }
       socket.join(data)
-      io.in(data).clients((err , clients) => {
-        ret.users = clients;
-        // console.log(ret)
-      });
+      
       socket.emit('ROOM_CHOSEN', {
         type: 'ROOM_CHOICE',
         actualRoom: {
@@ -85,8 +84,17 @@ const initEngine = io => {
     })
 
     socket.on('MALUS', (data) => {
-      console.log('malus', data)
-      //io.in(data.room.name).emit('MALUS', lineMalus(data))
+      // console.log('malus', data)
+      for (let i in data.room.users) {
+          console.log(data.room.users[i], data.user)
+          if (data.room.users[i] != data.user) {
+          console.log(data.room.users[i], ' spotted')
+          socket.broadcast.to(data.room.users[i]).emit('MALUS');
+        }
+      }
+    })
+    socket.on('MALUSED', (data) => {
+      console.log('malused', data)
     })
 
     socket.on('RESUME', (room) => {

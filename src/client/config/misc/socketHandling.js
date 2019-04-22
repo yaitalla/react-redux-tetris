@@ -3,7 +3,7 @@ import {alert} from '../../actions/alert';
 import {addRoom} from '../../actions/addRoom';
 import socket from './socketConnect';
 
-import { LAUNCH_GAME, NEW_CONNECT, PAUSE_GAME, RESUME, MALUS,
+import { LAUNCH_GAME, NEW_CONNECT, PAUSE_GAME, RESUME, MALUS, MALUSED,
     USER_ID, ROOM_SENT, ROOM_CHOSEN, SHAPES_SENT } from '../constants';
 
 const socketStream = () => {
@@ -24,7 +24,9 @@ const socketStream = () => {
         store.dispatch(data)
       })
       socket.on(MALUS, (data) => {
-        store.dispatch(data)
+        // store.dispatch(data)
+        console.log('client malused')
+        socket.emit(MALUSED, store.getState().grid.grid)
       })
       socket.on(USER_ID, (data) => {
         store.dispatch(data)

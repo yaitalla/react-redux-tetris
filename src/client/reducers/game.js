@@ -34,6 +34,7 @@ const gameReducer = (state = initial_state , action) => {
             playing: false
         }
     case ROOM_CHOICE:
+        console.log(action.actualRoom)
         return {
             ...state,
             actualRoom: action.actualRoom
