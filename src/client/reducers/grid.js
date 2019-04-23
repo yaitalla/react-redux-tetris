@@ -1,5 +1,5 @@
 import { ALERT_POP } from '../actions/alert'
-import { LOGIN_DATA, DROPDOWN, ROTATE, RESUME, MOVING, REFRESH, LEFT, RIGHT,
+import { LOGIN_DATA, DROPDOWN, ROTATE, RESUME, MALUSED, REFRESH, LEFT, RIGHT,
     USER_ID, ADD_ROOM, ROOM_CHOICE, LAUNCH, PAUSE_GAME, DOWN, ADD_SHAPE, SHAPES_SENT } from '../config/constants';
 
 const initial_state = {
@@ -18,6 +18,11 @@ const movesReducer = (state = initial_state , action) => {
             grid: action.field,
             shapes: action.shapes,
             shapeIndex: action.i
+        }
+    case MALUSED:
+        return {
+            ...state,
+            grid: action.grid
         }
     case LAUNCH:
         return {

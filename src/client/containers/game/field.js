@@ -9,7 +9,9 @@ import store from '../../config/store';
 import { dropdown } from '../../actions/dropdown';
 
 const setStyle = (box, curr, shapes, color) => {
-    if (box == 2) {
+    if (box == -99) {
+        return (applyColor('silver'))
+    } else if (box == 2) {
         return (applyColor(color[shapes[curr].id]))
     } else if (box > 2){
         return (applyColor(color[box-3]))

@@ -6,7 +6,7 @@ const fieldCreator = (field, shapes) => {
     for (let i=0; i<4; i++) {
         for(let j=4; j<8; j++) {
             if (shapes[0].shape[i][j-4] == 2) {
-                ret[i][j] = shapes[0].shape[i][j-4]
+                ret[i][j] = 2
             }
         }
     }

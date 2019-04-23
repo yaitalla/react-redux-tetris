@@ -21,7 +21,7 @@ const gridMaker = (field) =>{
     for (let i=0; i<20; i++) {
         for(let j=0; j<10; j++) { //game width 10 blocs
             if (field[i][j] > 2) {
-                grid[i].push(field[i][j]);
+                grid[i].push(field[i][j] || field[i][j] == -99);
             }
             else {
                 grid[i].push(0);

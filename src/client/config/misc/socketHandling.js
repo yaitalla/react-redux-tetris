@@ -25,8 +25,10 @@ const socketStream = () => {
       })
       socket.on(MALUS, (data) => {
         // store.dispatch(data)
-        console.log('client malused')
         socket.emit(MALUSED, store.getState().grid.grid)
+      })
+      socket.on(MALUSED, data => {
+        store.dispatch(data)
       })
       socket.on(USER_ID, (data) => {
         store.dispatch(data)

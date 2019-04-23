@@ -86,15 +86,18 @@ const initEngine = io => {
     socket.on('MALUS', (data) => {
       // console.log('malus', data)
       for (let i in data.room.users) {
-          console.log(data.room.users[i], data.user)
+          console.log(data.room.users[i], data.user, i)
           if (data.room.users[i] != data.user) {
-          console.log(data.room.users[i], ' spotted')
-          socket.broadcast.to(data.room.users[i]).emit('MALUS');
+            console.log(data.room.users[i], ' spotted')
+            socket.broadcast.to(data.room.users[i]).emit('MALUS');
         }
       }
     })
     socket.on('MALUSED', (data) => {
-      console.log('malused', data)
+      socket.emit('MALUSED', {
+        type: 'MALUSED',
+        grid: lineMalus(data)
+      })
     })
 
     socket.on('RESUME', (room) => {
