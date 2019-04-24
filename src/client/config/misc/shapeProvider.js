@@ -7,7 +7,7 @@ export const shapeProvider = (index, shapes, room) => {
         shapes,
         room
     }
-    if ((index+7) == shapes.length) {
+    if ((index+3) == shapes.length) {
         socket.emit(SHAPE_REQ, data)
     }
 }

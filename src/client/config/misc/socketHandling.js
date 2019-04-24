@@ -1,12 +1,14 @@
 import store from '../store';
 import {alert} from '../../actions/alert';
 import {addRoom} from '../../actions/addRoom';
+import { dropdown } from  '../../actions/dropdown';
 import socket from './socketConnect';
 
 import { LAUNCH_GAME, NEW_CONNECT, PAUSE_GAME, RESUME, MALUS, MALUSED,
     USER_ID, ROOM_SENT, ROOM_CHOSEN, SHAPES_SENT } from '../constants';
 
 const socketStream = () => {
+    
     socket.on(ROOM_SENT, (data) => {
         store.dispatch(addRoom(data))
     })

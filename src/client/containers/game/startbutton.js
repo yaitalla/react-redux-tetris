@@ -48,7 +48,7 @@ const PlayButton = ({myId, room, playing, shapeIndex, users}) => {
                                             style={btn}>Play</button>
                     ) : null
             }
-            <p>inputs disabled</p>
+            <p>dropdown disabled</p>
         </div>
     )
 }

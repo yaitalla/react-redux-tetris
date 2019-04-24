@@ -70,7 +70,7 @@ export const field = {
     display: "flex",
     flexDirection: "column",
     width: '160px',
-    height: "320px",
+    height: "340px",
     justifyContent: "center"
 }
 export const datafield = {
