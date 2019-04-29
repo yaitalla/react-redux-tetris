@@ -64,7 +64,15 @@ export const rowstat = {
     justifyContent: "center",
     flexDirection: "row",
 }
-
+export const gameOver = {
+  border: '2px solid black',
+    display: "flex",
+    flexDirection: "column",
+    width: '160px',
+    height: "340px",
+    justifyContent: "center",
+    backgroundColor: "silver"
+}
 export const field = {
       border: '2px solid black',
     display: "flex",

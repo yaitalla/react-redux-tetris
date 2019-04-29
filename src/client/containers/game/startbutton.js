@@ -55,11 +55,11 @@ const PlayButton = ({myId, room, playing, shapeIndex, users}) => {
 
 const mapStateToProps = (state) => {
     return {
-        myId: state.game.yourID,
-        room: state.game.actualRoom,
-        playing: state.game.playing,
-        users: state.game.users,
-        shapeIndex: state.grid.shapeIndex,
+        myId: state.yourID,
+        room: state.actualRoom,
+        playing: state.playing,
+        users: state.users,
+        shapeIndex: state.shapeIndex,
     }
 }
 

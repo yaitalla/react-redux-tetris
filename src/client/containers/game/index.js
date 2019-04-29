@@ -36,9 +36,9 @@ const Game = ({shapeIndex, room, users}) => {
 }
 const mapStateToProps = (state) => {
     return {
-        shapeIndex: state.grid.shapeIndex,
-        room: state.game.actualRoom,
-        users: state.game.users
+        shapeIndex: state.shapeIndex,
+        room: state.actualRoom,
+        users: state.users
     }
 }
 

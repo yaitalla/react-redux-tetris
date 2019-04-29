@@ -27,3 +27,4 @@ export const ADD_ROOM = 'ADD_ROOM';
 export const MALUS = 'MALUS';
 export const MALUSED = 'MALUSED';
 export const MOVING = 'MOVING';
+export const STOP = 'STOP';

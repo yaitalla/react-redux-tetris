@@ -72,7 +72,7 @@ const moveRight = (field, shapes, index, nbr) => {
 }
 
 export const right = (state) => {
-    let field = state.grid.grid, nb = state.game.nb, shapes = state.grid.shapes,
-                index = state.grid.shapeIndex, room = state.game.actualroom;
+    let field = state.grid, nb = state.nb, shapes = state.shapes,
+                index = state.shapeIndex, room = state.actualroom;
     return moveRight(field, shapes, index, nb)
 }

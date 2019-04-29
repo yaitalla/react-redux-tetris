@@ -27,7 +27,7 @@ const socketStream = () => {
       })
       socket.on(MALUS, (data) => {
         // store.dispatch(data)
-        socket.emit(MALUSED, store.getState().grid.grid)
+        socket.emit(MALUSED, store.getState().grid)
       })
       socket.on(MALUSED, data => {
         store.dispatch(data)

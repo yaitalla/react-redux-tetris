@@ -21,7 +21,7 @@ const Pregame = ({rooms}) => {
 
 const mapStateToProps = (state) => {
     return {
-        rooms: state.game.rooms
+        rooms: state.rooms
     }
 }
 

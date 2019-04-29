@@ -1,6 +1,7 @@
 import React from 'react';
 import {board, rowstat, datafield, title} from './style';
 import { connect } from 'react-redux';
+import GameOver from './gameOver';
 
 
 const applyColor = (color, mapKey) => {
@@ -46,7 +47,12 @@ const shapeView = (data) => {
   )
 }
 
-const DataBoard = ({next}) => {
+const DataBoard = ({next, room, index, gameOver}) => {
+    if (gameOver == true) {
+      return (
+        <GameOver/>
+      )
+    }
     return (
         <div style={datafield}>
           <div style={title}>
@@ -55,6 +61,11 @@ const DataBoard = ({next}) => {
           </div>
           <div style={title}>
             <h4>opponents</h4>
+            {
+              room.users.map((row, i) => 
+                <div key={i}>{row}</div>
+              )
+            }
           </div>
         </div>
     )
@@ -62,7 +73,10 @@ const DataBoard = ({next}) => {
 
 const mapStateToProps = (state) => {
     return {
-        next: state.grid.shapes[state.grid.shapeIndex+1],
+        next: state.shapes[state.shapeIndex+1],
+        room: state.actualRoom,
+        index: state.shapeIndex,
+        gameOver: state.gameOver
     }
 }
 

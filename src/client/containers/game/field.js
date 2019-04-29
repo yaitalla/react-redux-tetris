@@ -4,9 +4,27 @@ import {rows, field, boxe} from './style';
 import inputs from '../../config/misc/inputs'
 // import socket from '../../config/misc/socketConnect';
 import { applyColor } from '../../config/misc/applyColor';
-import {shapeProvider} from '../../config/misc/shapeProvider';
 import store from '../../config/store';
 import { dropdown } from '../../actions/dropdown';
+import lifecycle from 'react-pure-lifecycle';
+import GameOver from './gameOver';
+import { STOP } from '../../config/constants';
+
+
+const methods = {
+    componentDidUpdate(props) {
+     console.log('updated', props)
+    },
+    componentDidMount(props) {
+      console.log('mounted', props)
+    },
+    componentWillUpdate(props){
+      console.log('willUpdate', props)
+    },
+    componentWillMount(props){
+      console.log('will mount', props)
+    }
+}
 
 const setStyle = (box, curr, shapes, color) => {
     if (box == -99) {
@@ -32,14 +50,15 @@ const Row = ({row, curr, shapes, color}) => {
     )
 } 
 
-const GameField = ({colors, moving, grid, current, shapes, room, playing, nbr}) => {
+const GameField = ({colors, moving, grid, current,
+    shapes, room, playing, nbr}) => {
     // if (playing === true){
     //         setTimeout(() => {
-    //             store.dispatch(dropdown(grid, shapes[current].id, shapes, current, room))
+    //             store.dispatch(dropdown())
+    //           //  store.dispatch(dropdown(grid, shapes[current].id, shapes, current, room))
     //         }, 500)
     // }
-    shapeProvider(current, shapes, room)
-    inputs()
+    inputs();
     return (
         <div style={field}>
             {
@@ -52,15 +71,18 @@ const GameField = ({colors, moving, grid, current, shapes, room, playing, nbr}) 
 
 const mapStateToProps = (state) => {
     return {
-        grid: state.grid.grid,
-        current: state.grid.shapeIndex,
-        shapes: state.grid.shapes,
-        colors: state.grid.colors,
-        nbr: state.game.nb,
-        moving: state.game.moving,
-        room: state.game.actualRoom,
-        playing: state.game.playing
+        grid: state.grid,
+        current: state.shapeIndex,
+        shapes: state.shapes,
+        colors: state.colors,
+        nbr: state.nb,
+        moving: state.moving,
+        room: state.actualRoom,
+        playing: state.playing,
+        shapereq: state.shapereq,
     }
 }
 
-export default connect(mapStateToProps)(GameField);
+const Game = lifecycle(methods)(GameField)
+
+export default connect(mapStateToProps)(Game);

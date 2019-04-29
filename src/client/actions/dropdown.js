@@ -1,5 +1,6 @@
 import {add} from './addShape';
 import {checkBelow} from '../config/misc/collisionDown';
+import store from '../config/store';
 
 const gridMaker = (field) =>{
     const grid = []
@@ -54,6 +55,9 @@ const moveDown = (field, id, shapes, index, room) => {
     }
 }
 
-export const dropdown = (field, id, shapes, index, room) => {
-    return moveDown(field, id, shapes, index, room)
+export const dropdown = () => {
+    const state = store.getState();
+    const shapes = state.shapes;
+    const index = state.shapeIndex;
+    return moveDown(state.grid, shapes[index].id, shapes, index, state.actualRoom)
 }
