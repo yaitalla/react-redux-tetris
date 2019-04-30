@@ -59,5 +59,6 @@ export const dropdown = () => {
     const state = store.getState();
     const shapes = state.shapes;
     const index = state.shapeIndex;
-    return moveDown(state.grid, shapes[index].id, shapes, index, state.actualRoom)
+    store.dispatch(moveDown(state.grid, shapes[index].id, shapes, index, state.actualRoom))
+    
 }

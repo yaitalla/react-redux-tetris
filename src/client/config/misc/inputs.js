@@ -19,43 +19,45 @@ const keyboard = {
   const inputs = () => 
   {
       let state = store.getState();
-      // console.log('inputs',state)
+
       const keyDown = (e) => {
-      if (e.metaKey === true || state.playing == false || boardKeys.indexOf(e.keyCode) === -1) {
-        console.log('key pressed', e.metaKey)
-        store.dispatch({type: REFRESH, nbr: state.nb+1})
-        return;
-      }
-      const type = keyboard[e.keyCode];
-    //   if (type === keydownActive) {
-    //        store.dispatch(alert('release key'))
-    //       return;
-    //   }
-      keydownActive = type;
-      if (state.moving == false) {
-        store.dispatch(move[type](state))
-        return;
-      } else {
-        store.dispatch({type: STOP})
-        return;
-      }
-      
-    };
+        if (e.metaKey === true || state.playing == false || boardKeys.indexOf(e.keyCode) === -1) {
+          console.log('key pressed', e.metaKey)
+          store.dispatch({type: REFRESH, nbr: state.nb+1})
+          return;
+        }
+        const type = keyboard[e.keyCode];
+        if (state.moving == false) {
+          store.dispatch(move[type](state))
+        }
+     };
 
     const keyup = (e) => {
-          store.dispatch(alert('pop alert ...'))
+      const type = keyboard[e.keyCode];
+      //store.dispatch(alert('pop alert ...'))
+          if (state.moving == true) {
+            store.dispatch({type: STOP})
+            return;
+          }
     }
     const playing = state.playing;
-  // if (playing === true && state.moving == false){
-  //           setTimeout(() => {
-  //               store.dispatch(dropdown())
-  //             //  store.dispatch(dropdown(grid, shapes[current].id, shapes, current, room))
-  //           }, 500)
-  //   }
   
+    // if (playing === true && state.moving == false){
+    //         setTimeout(() => {
+    //             store.dispatch(dropdown())
+    //             // store.dispatch({type: STOP})
+    //         }, 500)
+    // } else if (state.moving == true) {
+    //             store.dispatch({type: STOP})
+    // }
   shapeProvider(state.shapeIndex, state.shapes, state.actualRoom)
   window.addEventListener('keydown', keyDown, {once: true});
   window.addEventListener('keyup', keyup, {once: true});
 }
 
 export default inputs;
+//   if (type === keydownActive) {
+    //        store.dispatch(alert('release key'))
+    //       return;
+    //   }
+      // keydownActive = type;

@@ -62,6 +62,7 @@ const rootReducer = (state = initial_state, action) => {
             return {
                 ...state,
                 grid: action.field,
+                moving: true
             }    
         case LEFT:
             return {
@@ -112,7 +113,7 @@ const rootReducer = (state = initial_state, action) => {
             return {
                 ...state,
                 grid: action.field,
-                moving: true
+                // moving: true
             }
         case STOP:
             return {
