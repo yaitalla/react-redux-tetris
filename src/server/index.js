@@ -32,7 +32,9 @@ const initApp = (app, params, cb) => {
     cb()
   })
 }
-
+const sendFall = io => {
+  loginfo(io.sockets.sockets)
+}
 const initEngine = io => {
   io.on('connection', function(socket){
     if (userlist.indexOf(socket.id) == -1){
@@ -57,6 +59,11 @@ const initEngine = io => {
       })
       socket.emit('ROOM_SENT', roomlist)
     });
+    socket.on('FALL', () => {
+      setTimeout(() => {
+        socket.emit('FALL')
+      }, 500)
+    })
     socket.on('ENTER_ROOM', (data) => { //enter room
       let ret;
       for (let i in roomlist) {
@@ -125,7 +132,7 @@ const initEngine = io => {
     //    roomlist.splice(roomlist.indexOf(roomlist.find(chekRooms)), 1)
     //  }
       console.log("User disconnected: " + socket.id)
-  })
+    })
   })
 }
 
@@ -144,6 +151,7 @@ export function create(params){
       }
 
       initEngine(io)
+      sendFall(io)
       resolve({stop})
     })
   })

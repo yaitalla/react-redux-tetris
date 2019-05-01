@@ -9,6 +9,7 @@ import { dropdown } from '../../actions/dropdown';
 import lifecycle from 'react-pure-lifecycle';
 import GameOver from './gameOver';
 import { STOP } from '../../config/constants';
+import { fall, clearFall, fallInterval } from '../../actions/fall';
 
 
 const methods = {
@@ -20,6 +21,13 @@ const methods = {
     },
     componentWillUpdate(props){
       console.log('willUpdate', props)
+    //   if (props.playing == true) {
+    //         if (props.control == false) {
+    //             fall()
+    //         } else {
+    //             clearFall();
+    //         }
+    //     }
     },
     componentWillMount(props){
       console.log('will mount', props)
@@ -51,18 +59,10 @@ const Row = ({row, curr, shapes, color}) => {
 } 
 
 const GameField = ({colors, moving, grid, current,
-    shapes, room, playing, nbr}) => {
-        // if (playing === true && moving == false){
-        //     setTimeout(() => {
-        //         store.dispatch(dropdown())
-        //         // store.dispatch({type: STOP})
-        //     }, 500)
-        // }
+    shapes, control, room, playing, nbr}) => {
     inputs();
-    // if (playing === true &&  moving == false){
-    //     setTimeout(() => {
-    //         dropdown(grid, shapes[current].id, shapes, current, room)
-    //     }, 500)
+    // if (playing == true) {
+    //     fallInterval(control);
     // }
     return (
         <div style={field}>
@@ -85,6 +85,7 @@ const mapStateToProps = (state) => {
         room: state.actualRoom,
         playing: state.playing,
         shapereq: state.shapereq,
+        control: state.falling
     }
 }
 

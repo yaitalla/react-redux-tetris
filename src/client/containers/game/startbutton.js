@@ -2,12 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {btn, img, sidebar, roomheader, roominfo, divroominfo} from './style';
 import socket from '../../config/misc/socketConnect';
-import { LAUNCH, PAUSE, RESUME } from '../../config/constants'
+import { LAUNCH, PAUSE, RESUME, FALL } from '../../config/constants'
 import logo from '../pregame/redribbon.jpg';
 
 
 const launchGame = (room) => {
      socket.emit(LAUNCH, room)
+     socket.emit(FALL)
 }
 const pauseGame = (room) => {
     socket.emit(PAUSE, room)

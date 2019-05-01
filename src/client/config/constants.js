@@ -28,3 +28,6 @@ export const MALUS = 'MALUS';
 export const MALUSED = 'MALUSED';
 export const MOVING = 'MOVING';
 export const STOP = 'STOP';
+export const FALL_CONTROL = 'FALL_CONTROL';
+export const FALL = 'FALL';
+export const BEGIN = 'BEGIN';

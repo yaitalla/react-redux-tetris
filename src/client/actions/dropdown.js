@@ -1,6 +1,8 @@
 import {add} from './addShape';
 import {checkBelow} from '../config/misc/collisionDown';
 import store from '../config/store';
+import { strict } from 'assert';
+import { REFRESH } from '../config/constants';
 
 const gridMaker = (field) =>{
     const grid = []
@@ -59,6 +61,9 @@ export const dropdown = () => {
     const state = store.getState();
     const shapes = state.shapes;
     const index = state.shapeIndex;
-    store.dispatch(moveDown(state.grid, shapes[index].id, shapes, index, state.actualRoom))
+    if (state.playing == false) {
+        return { type: REFRESH}
+    }
+    return (moveDown(state.grid, shapes[index].id, shapes, index, state.actualRoom))
     
 }

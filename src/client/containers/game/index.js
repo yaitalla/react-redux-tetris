@@ -3,6 +3,7 @@ import PlayButton from './startbutton'
 import { gameScreen, game, fullscreen, roomheader } from './style'
 import Screen from './screen'
 import { connect } from 'react-redux';
+import { fallInterval } from '../../actions/fall'; 
 
 const roomHeader = (room, users) => {
     let ownerIndex = users.indexOf(room.owner) + 1
@@ -20,7 +21,10 @@ const roomHeader = (room, users) => {
     )
 }
 
-const Game = ({shapeIndex, room, users}) => {
+const Game = ({shapeIndex, room, playing, control, users}) => {
+    // if (playing == true) {
+    //     fallInterval(control);
+    // }
     return (
         <div style={fullscreen}>
             
@@ -38,7 +42,9 @@ const mapStateToProps = (state) => {
     return {
         shapeIndex: state.shapeIndex,
         room: state.actualRoom,
-        users: state.users
+        users: state.users,
+        playing: state.playing,
+        control: state.falling
     }
 }
 

@@ -21,15 +21,17 @@ const keyboard = {
       let state = store.getState();
 
       const keyDown = (e) => {
+        const type = keyboard[e.keyCode];
+     //   console.log('type', type, boardKeys.indexOf(e.keyCode))
         if (e.metaKey === true || state.playing == false || boardKeys.indexOf(e.keyCode) === -1) {
           console.log('key pressed', e.metaKey)
           store.dispatch({type: REFRESH, nbr: state.nb+1})
           return;
         }
-        const type = keyboard[e.keyCode];
         if (state.moving == false) {
           store.dispatch(move[type](state))
         }
+        return;
      };
 
     const keyup = (e) => {
@@ -50,6 +52,13 @@ const keyboard = {
     // } else if (state.moving == true) {
     //             store.dispatch({type: STOP})
     // }
+   
+    // if (playing == true && state.moving == false) {
+    //   setTimeout(() => {
+    //     store.dispatch(dropdown())
+    //   }, 500)
+    // }
+    
   shapeProvider(state.shapeIndex, state.shapes, state.actualRoom)
   window.addEventListener('keydown', keyDown, {once: true});
   window.addEventListener('keyup', keyup, {once: true});

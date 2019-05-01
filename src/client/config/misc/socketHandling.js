@@ -3,12 +3,17 @@ import {alert} from '../../actions/alert';
 import {addRoom} from '../../actions/addRoom';
 import { dropdown } from  '../../actions/dropdown';
 import socket from './socketConnect';
+import { fallInterval } from '../../actions/fall';
 
 import { LAUNCH_GAME, NEW_CONNECT, PAUSE_GAME, RESUME, MALUS, MALUSED,
-    USER_ID, ROOM_SENT, ROOM_CHOSEN, SHAPES_SENT } from '../constants';
+    USER_ID, ROOM_SENT, ROOM_CHOSEN, SHAPES_SENT, FALL, BEGIN } from '../constants';
 
 const socketStream = () => {
     
+    socket.on(FALL, () => {
+      store.dispatch(dropdown())
+      socket.emit(FALL)
+    })
     socket.on(ROOM_SENT, (data) => {
         store.dispatch(addRoom(data))
     })

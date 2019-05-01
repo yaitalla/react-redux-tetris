@@ -1,7 +1,7 @@
 import { ALERT_POP } from '../actions/alert'
 import { LOGIN_DATA, GAME_OVER, ROTATE, RESUME, MALUSED, REFRESH, LEFT, RIGHT,
     USER_ID, ADD_ROOM, ROOM_CHOICE, LAUNCH, PAUSE_GAME, STOP,
-    DOWN, ADD_SHAPE, SHAPES_SENT, DROPDOWN } from '../config/constants';
+    DOWN, ADD_SHAPE, SHAPES_SENT, DROPDOWN, FALL_CONTROL } from '../config/constants';
 
 const initial_state = {
     grid: [],
@@ -113,13 +113,18 @@ const rootReducer = (state = initial_state, action) => {
             return {
                 ...state,
                 grid: action.field,
-                // moving: true
+                falling: true
             }
         case STOP:
             return {
                 ...state,
                 moving: false
-            } 
+            }
+        case FALL_CONTROL:
+            return {
+                ...state,
+                falling: false
+            }
         default: 
             return state
     }
