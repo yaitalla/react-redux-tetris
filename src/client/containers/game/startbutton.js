@@ -8,7 +8,7 @@ import logo from '../pregame/redribbon.jpg';
 
 const launchGame = (room) => {
      socket.emit(LAUNCH, room)
-     socket.emit(FALL)
+     socket.emit(FALL, room)
 }
 const pauseGame = (room) => {
     socket.emit(PAUSE, room)

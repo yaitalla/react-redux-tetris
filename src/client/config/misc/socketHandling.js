@@ -12,7 +12,7 @@ const socketStream = () => {
     
     socket.on(FALL, () => {
       store.dispatch(dropdown())
-      socket.emit(FALL)
+      socket.emit(FALL, store.getState().actualRoom)
     })
     socket.on(ROOM_SENT, (data) => {
         store.dispatch(addRoom(data))

@@ -26,6 +26,7 @@ const rootReducer = (state = initial_state, action) => {
                 nb: 0
             }
         case REFRESH:
+        //console.log(state.nb)
                 return {
                 ...state,
                 nb: action.nbr

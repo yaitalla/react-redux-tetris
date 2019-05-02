@@ -43,8 +43,13 @@ const rotater = (shape) => {
 
 export const rotate = (state) => {
     let field = state.grid, shapes = state.shapes, i = state.shapeIndex;
-    if (!checkBelow(field)) {
-        return { type: REFRESH }
+    const x = shapes[i].leftCorner.x
+    const y = shapes[i].leftCorner.y
+    const walls = (x >= 8);
+    const walls2 = shapes[i].id == 5 && x >= 7;
+    console.log(x, y)
+    if (!checkBelow(field) || walls || walls2) {
+        return { type: REFRESH, nbr: state.nb+1 }
     }
     let ret = newGrid(field);
     const rot = {
@@ -53,8 +58,6 @@ export const rotate = (state) => {
         id: shapes[i].id,
         leftCorner: shapes[i].leftCorner
     }
-    const x = shapes[i].leftCorner.x
-    const y = shapes[i].leftCorner.y
     for (let i=y; i<(y+4); i++) {
         for(let j=x; j<(x+4); j++) {
             if (rot.shape[i-y][j-x] == 2) {

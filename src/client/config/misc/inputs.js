@@ -24,41 +24,23 @@ const keyboard = {
         const type = keyboard[e.keyCode];
      //   console.log('type', type, boardKeys.indexOf(e.keyCode))
         if (e.metaKey === true || state.playing == false || boardKeys.indexOf(e.keyCode) === -1) {
-          console.log('key pressed', e.metaKey)
+         // console.log('key pressed', e.metaKey)
           store.dispatch({type: REFRESH, nbr: state.nb+1})
           return;
         }
-        if (state.moving == false) {
+       if (state.moving == false) {
           store.dispatch(move[type](state))
         }
         return;
      };
 
     const keyup = (e) => {
-      const type = keyboard[e.keyCode];
-      //store.dispatch(alert('pop alert ...'))
           if (state.moving == true) {
             store.dispatch({type: STOP})
             return;
           }
     }
-    const playing = state.playing;
-  
-    // if (playing === true && state.moving == false){
-    //         setTimeout(() => {
-    //             store.dispatch(dropdown())
-    //             // store.dispatch({type: STOP})
-    //         }, 500)
-    // } else if (state.moving == true) {
-    //             store.dispatch({type: STOP})
-    // }
-   
-    // if (playing == true && state.moving == false) {
-    //   setTimeout(() => {
-    //     store.dispatch(dropdown())
-    //   }, 500)
-    // }
-    
+
   shapeProvider(state.shapeIndex, state.shapes, state.actualRoom)
   window.addEventListener('keydown', keyDown, {once: true});
   window.addEventListener('keyup', keyup, {once: true});

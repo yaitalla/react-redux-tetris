@@ -24,16 +24,13 @@ const gridMaker = () => {
 }
 
 const removeLiner = (lines, field, user, room) => {
-    // console.log(field, lines)
-    let grid = gridMaker(), gap = lines.length;
-    // let min = Math.min(lines), max = Math.max(lines);
+    let grid = gridMaker();
     socket.emit(MALUS, {user, room})
-    if (gap == 1) {
-        let i = lines[0]
-        field.splice(i, 1)
-        field.splice(1, 0, grid[1])
-        return field
-    }
+    for (let i in lines) {
+        field.splice(lines[i], 1) //remove line at index i
+        field.splice(0, 0, grid[0]) //insert new clear line 
+    }                                  //at index 0
+    return field; 
 }
 
 const checkForLine = (field, room, user) => {

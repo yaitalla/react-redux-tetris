@@ -59,9 +59,13 @@ const initEngine = io => {
       })
       socket.emit('ROOM_SENT', roomlist)
     });
-    socket.on('FALL', () => {
+    socket.on('FALL', (room) => {
       setTimeout(() => {
-        socket.emit('FALL')
+        // for (let i in room.users) {
+        //         socket.broadcast.to(room.users[i]).emit('FALL');
+        // }
+        //io.in(room.name).emit('FALL')
+        socket.emit('FALL')      
       }, 500)
     })
     socket.on('ENTER_ROOM', (data) => { //enter room
@@ -91,11 +95,8 @@ const initEngine = io => {
     })
 
     socket.on('MALUS', (data) => {
-      // console.log('malus', data)
       for (let i in data.room.users) {
-          console.log(data.room.users[i], data.user, i)
           if (data.room.users[i] != data.user) {
-            console.log(data.room.users[i], ' spotted')
             socket.broadcast.to(data.room.users[i]).emit('MALUS');
         }
       }
