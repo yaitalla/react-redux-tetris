@@ -18,23 +18,27 @@ const keyboard = {
   const boardKeys = Object.keys(keyboard).map(e => parseInt(e, 10));
   const inputs = () => 
   {
+    console.log('inputs')
       let state = store.getState();
 
       const keyDown = (e) => {
+        console.log('keydown')
         const type = keyboard[e.keyCode];
-     //   console.log('type', type, boardKeys.indexOf(e.keyCode))
-        if (e.metaKey === true || state.playing == false || boardKeys.indexOf(e.keyCode) === -1) {
-          console.log('key pressed', e.metaKey)
+       console.log('type', type, boardKeys.indexOf(e.keyCode))
+        if (/*e.metaKey === true || */state.playing == false || boardKeys.indexOf(e.keyCode) === -1) {
+          console.log('key pressed', e.metaKey, boardKeys.indexOf(e.keyCode))
           store.dispatch({type: REFRESH, nbr: state.nb+1})
           return;
         }
-       if (state.moving == false) {
-          store.dispatch(move[type](state))
-        }
+        store.dispatch(move[type](state))
+      if (state.moving == false) {
+          // store.dispatch(move[type](state))
+       }
         return;
      };
 
     const keyup = (e) => {
+      console.log('keyup')
           if (state.moving == true) {
             store.dispatch({type: STOP})
             return;
@@ -42,8 +46,8 @@ const keyboard = {
     }
 
   shapeProvider(state.shapeIndex, state.shapes, state.actualRoom)
-  window.addEventListener('keydown', keyDown, {once: true});
-  window.addEventListener('keyup', keyup, {once: true});
+  window.addEventListener('keydown', keyDown);
+  // window.addEventListener('keyup', keyup);
 }
 
 export default inputs;

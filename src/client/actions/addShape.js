@@ -32,13 +32,13 @@ const removeLiner = (lines, field, user, room) => {
     let clearline = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     socket.emit(MALUS, {user, room})
     for (let i in lines) {
-        console.log('before removing line', field)
+       // console.log('before removing line', field)
         field.splice(lines[i], 1) //remove line at index i
-        console.log('after removing line', field)
+       // console.log('after removing line', field)
         field.unshift(clearline) //insert new clear line 
-        console.log('after adding clearline', field)
+       // console.log('after adding clearline', field)
     }                                  //at index 0
-    console.log(field)
+   // console.log(field)
     return field; 
 }
 
@@ -50,7 +50,7 @@ const checkForLine = (field, room, user) => {
         }
     }
     if (linesArray.length > 0){
-        console.log('before removeliner', field, linesArray)
+       // console.log('before removeliner', field, linesArray)
         return ({field: removeLiner(linesArray, field, user, room),
                 score: linesArray.length})
     }
@@ -59,7 +59,7 @@ const checkForLine = (field, room, user) => {
 
 export const add = (field, shapes, index, room, user) => {
     let ret = checkForLine(field, room, user);
-    console.log('ret', ret)
+   // console.log('ret', ret)
     for (let i=1; i<5; i++) {
         for(let j=3; j<7; j++) {
             if (shapes[index+1].shape[i-1][j-3] == 2) {

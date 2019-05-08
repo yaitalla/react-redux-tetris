@@ -36,7 +36,7 @@ const rotater = (shape) => {
     const update = new Array(checkArray).fill(0);
     for (let i=0; i<4; i++){
         ret[i] = ret[i].slice(checkArray).concat(update)
-        console.log('rotater', ret[i])
+        //console.log('rotater', ret[i])
     }
     return ret;
 }
@@ -48,7 +48,7 @@ export const rotate = (state) => {
     const y = shapes[index].leftCorner.y
     const walls = (x >= 8);
     const walls2 = shapes[index].id == 5 && x >= 7;
-    console.log(x, y)
+  //  console.log(x, y)
     if (!checkBelow(field) || walls || walls2) {
         return { type: REFRESH, nbr: state.nb+1 }
     }

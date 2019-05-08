@@ -46,10 +46,10 @@ const asyncFall = () => {
     }
     
     try {
-        console.log('tried')
+       // console.log('tried')
         return onSuccess();
     } catch (error) {
-        console.log('async Error', error);
+        //console.log('async Error', error);
     }
   }
 }

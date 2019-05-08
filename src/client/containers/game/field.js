@@ -58,14 +58,15 @@ const Row = ({row, curr, shapes, color}) => {
     )
 } 
 
-const GameField = ({colors, moving, grid, current,
+const GameField = ({colors, grid, current,
     shapes, control, room, playing, nbr}) => {
-    if (playing == true) {
-        inputs();
-    }
+    // if (playing == true) {
+    //     inputs();
+    // }
     // if (playing == true) {
     //     fallInterval(control);
     // }
+    console.log('RENDER')
     return (
         <div style={field}>
             {
@@ -83,7 +84,6 @@ const mapStateToProps = (state) => {
         shapes: state.shapes,
         colors: state.colors,
         nbr: state.nb,
-        moving: state.moving,
         room: state.actualRoom,
         playing: state.playing,
         shapereq: state.shapereq,

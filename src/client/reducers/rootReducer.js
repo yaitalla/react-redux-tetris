@@ -80,7 +80,7 @@ const rootReducer = (state = initial_state, action) => {
                 moving: true
             }
         case ROTATE:
-            console.log(state.grid, action.field)
+            // console.log(state.grid, action.field)
             return {
                 ...state,
                 grid: action.field,

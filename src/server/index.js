@@ -68,7 +68,7 @@ const initEngine = io => {
         //io.in(room.name).emit('FALL')
        // console.log(room.name)
         socket.emit('FALL')      
-      }, 500)
+      }, 2000)
     })
     socket.on('ENTER_ROOM', (data) => { //enter room
       let ret;
