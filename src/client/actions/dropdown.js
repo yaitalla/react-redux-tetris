@@ -61,9 +61,5 @@ export const dropdown = () => {
     const state = store.getState();
     const shapes = state.shapes;
     const index = state.shapeIndex;
-    if (state.playing == false) {
-        return { type: REFRESH}
-    }
     return (moveDown(state.grid, shapes[index].id, shapes, index, state.actualRoom))
-    
 }

@@ -24,7 +24,7 @@ const keyboard = {
         const type = keyboard[e.keyCode];
      //   console.log('type', type, boardKeys.indexOf(e.keyCode))
         if (e.metaKey === true || state.playing == false || boardKeys.indexOf(e.keyCode) === -1) {
-         // console.log('key pressed', e.metaKey)
+          console.log('key pressed', e.metaKey)
           store.dispatch({type: REFRESH, nbr: state.nb+1})
           return;
         }

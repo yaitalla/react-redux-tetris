@@ -11,8 +11,10 @@ import { LAUNCH_GAME, NEW_CONNECT, PAUSE_GAME, RESUME, MALUS, MALUSED,
 const socketStream = () => {
     
     socket.on(FALL, () => {
-      store.dispatch(dropdown())
-      socket.emit(FALL, store.getState().actualRoom)
+      if (store.getState().playing == true) {
+        store.dispatch(dropdown())
+        socket.emit(FALL, store.getState().actualRoom)
+      }
     })
     socket.on(ROOM_SENT, (data) => {
         store.dispatch(addRoom(data))

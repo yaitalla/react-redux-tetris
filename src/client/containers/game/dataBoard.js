@@ -47,7 +47,7 @@ const shapeView = (data) => {
   )
 }
 
-const DataBoard = ({next, room, index, gameOver}) => {
+const DataBoard = ({next, room, index, gameOver, score, ID}) => {
     if (gameOver == true) {
       return (
         <GameOver/>
@@ -63,9 +63,14 @@ const DataBoard = ({next, room, index, gameOver}) => {
             <h4>opponents</h4>
             {
               room.users.map((row, i) => 
+                row == ID ? null :
                 <div key={i}>{row}</div>
               )
             }
+          </div>
+          <div style={title}>
+            <h5>Score</h5>
+            { score }
           </div>
         </div>
     )
@@ -76,7 +81,9 @@ const mapStateToProps = (state) => {
         next: state.shapes[state.shapeIndex+1],
         room: state.actualRoom,
         index: state.shapeIndex,
-        gameOver: state.gameOver
+        gameOver: state.gameOver,
+        score: state.score,
+        ID: state.yourID
     }
 }
 

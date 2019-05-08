@@ -12,7 +12,8 @@ const initial_state = {
     nb: 0,
     moving: false,
     gameOver: false,
-    shapereq: false
+    shapereq: false,
+    score: 0
 }
 
 const rootReducer = (state = initial_state, action) => {
@@ -51,7 +52,8 @@ const rootReducer = (state = initial_state, action) => {
             return {
                 ...state,
                 grid: action.field,
-                shapeIndex: action.i
+                shapeIndex: action.i,
+                score: action.score == 0 ? state.score : state.score + action.score
             }
         case SHAPES_SENT:
             return {
@@ -78,6 +80,7 @@ const rootReducer = (state = initial_state, action) => {
                 moving: true
             }
         case ROTATE:
+            console.log(state.grid, action.field)
             return {
                 ...state,
                 grid: action.field,

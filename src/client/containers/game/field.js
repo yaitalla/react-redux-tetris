@@ -14,13 +14,13 @@ import { fall, clearFall, fallInterval } from '../../actions/fall';
 
 const methods = {
     componentDidUpdate(props) {
-     console.log('updated', props)
+    // console.log('updated', props)
     },
     componentDidMount(props) {
       console.log('mounted', props)
     },
     componentWillUpdate(props){
-      console.log('willUpdate', props)
+  //    console.log('willUpdate', props)
     //   if (props.playing == true) {
     //         if (props.control == false) {
     //             fall()
@@ -60,7 +60,9 @@ const Row = ({row, curr, shapes, color}) => {
 
 const GameField = ({colors, moving, grid, current,
     shapes, control, room, playing, nbr}) => {
-    inputs();
+    if (playing == true) {
+        inputs();
+    }
     // if (playing == true) {
     //     fallInterval(control);
     // }

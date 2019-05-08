@@ -35,6 +35,12 @@ export const screen = {
     width: '90%',
     
 }
+export const datafield = {
+  display: "flex",
+  flexDirection: "column",
+  width: '160px',
+  height: "320px",
+}
 export const title = {
   border: "1px solid silver",
     height: "50%",
@@ -81,12 +87,7 @@ export const field = {
     height: "340px",
     justifyContent: "center"
 }
-export const datafield = {
-  display: "flex",
-  flexDirection: "column",
-  width: '160px',
-  height: "320px",
-}
+
 
 export const roomheader = {
   display: "flex",

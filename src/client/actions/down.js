@@ -33,11 +33,13 @@ const touchDown = (field, id, shapes, index, room, user) => {
 
 const moveDown = (field, id, shapes, index, room, user) => {
     const grid = gridMaker(field)
+    console.log('movedown', grid, field)
     let i, j, x = 0;
     for ( i=0; i<20; i++) {
         for( j=0; j<10; j++) {
             if ((field[i][j] == 2) && (i < 20)){
                 if (!checkBelow(field)){
+                    console.log('moveDown', field)
                     return touchDown(field, id, shapes, index, room, user)
                 } else {
                     grid[i+1][j] = 2;

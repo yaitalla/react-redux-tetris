@@ -36,27 +36,28 @@ const rotater = (shape) => {
     const update = new Array(checkArray).fill(0);
     for (let i=0; i<4; i++){
         ret[i] = ret[i].slice(checkArray).concat(update)
+        console.log('rotater', ret[i])
     }
     return ret;
 }
 
 
 export const rotate = (state) => {
-    let field = state.grid, shapes = state.shapes, i = state.shapeIndex;
-    const x = shapes[i].leftCorner.x
-    const y = shapes[i].leftCorner.y
+    let field = state.grid, shapes = state.shapes, index = state.shapeIndex;
+    const x = shapes[index].leftCorner.x
+    const y = shapes[index].leftCorner.y
     const walls = (x >= 8);
-    const walls2 = shapes[i].id == 5 && x >= 7;
+    const walls2 = shapes[index].id == 5 && x >= 7;
     console.log(x, y)
     if (!checkBelow(field) || walls || walls2) {
         return { type: REFRESH, nbr: state.nb+1 }
     }
     let ret = newGrid(field);
     const rot = {
-        color: shapes[i].color,
-        shape: rotater(shapes[i].shape),
-        id: shapes[i].id,
-        leftCorner: shapes[i].leftCorner
+        color: shapes[index].color,
+        shape: rotater(shapes[index].shape),
+        id: shapes[index].id,
+        leftCorner: shapes[index].leftCorner
     }
     for (let i=y; i<(y+4); i++) {
         for(let j=x; j<(x+4); j++) {
@@ -65,7 +66,7 @@ export const rotate = (state) => {
             }
         }
     }
-    shapes[i] = rot;
+    shapes[index] = rot;
     return {
         type: ROTATE,
         field: ret,

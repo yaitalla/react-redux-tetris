@@ -62,9 +62,11 @@ const initEngine = io => {
     socket.on('FALL', (room) => {
       setTimeout(() => {
         // for (let i in room.users) {
+        //       console.log(room.users)
         //         socket.broadcast.to(room.users[i]).emit('FALL');
         // }
         //io.in(room.name).emit('FALL')
+       // console.log(room.name)
         socket.emit('FALL')      
       }, 500)
     })

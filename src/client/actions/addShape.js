@@ -23,13 +23,22 @@ const gridMaker = () => {
     return grid;
 }
 
+const clearline = () => {
+    let ret = [];
+
+}
+
 const removeLiner = (lines, field, user, room) => {
-    let grid = gridMaker();
+    let clearline = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     socket.emit(MALUS, {user, room})
     for (let i in lines) {
+        console.log('before removing line', field)
         field.splice(lines[i], 1) //remove line at index i
-        field.splice(0, 0, grid[0]) //insert new clear line 
+        console.log('after removing line', field)
+        field.unshift(clearline) //insert new clear line 
+        console.log('after adding clearline', field)
     }                                  //at index 0
+    console.log(field)
     return field; 
 }
 
@@ -41,30 +50,34 @@ const checkForLine = (field, room, user) => {
         }
     }
     if (linesArray.length > 0){
-        return removeLiner(linesArray, field, user, room)
+        console.log('before removeliner', field, linesArray)
+        return ({field: removeLiner(linesArray, field, user, room),
+                score: linesArray.length})
     }
-    return field
+    return ({field: field, score: 0})
 }
 
 export const add = (field, shapes, index, room, user) => {
     let ret = checkForLine(field, room, user);
+    console.log('ret', ret)
     for (let i=1; i<5; i++) {
         for(let j=3; j<7; j++) {
             if (shapes[index+1].shape[i-1][j-3] == 2) {
-                if (ret[i][j+1] > 2) {
+                if (ret.field[i][j+1] > 2) {
                     return {
                         type: GAME_OVER,
-                        field: ret,
+                        field: ret.field,
                         gameOver: true
                     }
                 }
-                ret[i][j+1] = shapes[index+1].shape[i-1][j-3]
+                ret.field[i][j+1] = shapes[index+1].shape[i-1][j-3]
             }
         }
     }
     return {
         type: ADD_SHAPE,
-        field: ret,
+        field: ret.field,
+        score: ret.score,
         shapes: shapes,
         i: index + 1,
         currentID: shapes[index+1].id,
